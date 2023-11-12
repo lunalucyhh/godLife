@@ -2,7 +2,7 @@
 
 
 ## ERD
-![God Life ERD](godLife.drawio.png)
+![God Life ERD](/images/godLife.drawio.png)
 
 
 ## API 명세서
