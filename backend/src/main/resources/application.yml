@@ -1,0 +1,16 @@
+server:
+  port: 8000
+  shutdown: graceful
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/godlife?serberTimezone=UTC
+    username: godlife-api
+    password: apiPW
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    properties:
+      hibernate:
+        dialect = org.hibernate.dialect.MariaDBDialect
