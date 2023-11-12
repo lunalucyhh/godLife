@@ -2,4 +2,4 @@
 
 
 ## ERD
-![God Life ERD](godLife.drowio.drawio.png)
+![God Life ERD](godLife.drawio.png)
