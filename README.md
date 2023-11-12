@@ -2,7 +2,7 @@
 
 
 ## ERD
-![God Life ERD](/images/godLife.drawio.new.png)
+![God Life ERD](/images/godLife.drawio.png)
 
 
 ## API 명세서
@@ -10,7 +10,7 @@
 #### 1. 게시글 조회 (단일) - read
 request
 ```
-GET:/api/post/{post_no}?board_no=1
+GET:/api/board/{board_no}
 ```
 response
 ```javascript
@@ -43,7 +43,7 @@ response
 #### 2. 게시글 조회 (리스트) - read
 request
 ```
-GET:/api/post/title?board_no=1&limit=10&offset=0&sort=ins_timestamp_desc
+GET:/api/board/title?limit=10&offset=0&sort=ins_timestamp_desc
 ```
 response
 ```javascript
@@ -73,9 +73,8 @@ response
 #### 3. 게시글 등록 - create
 request
 ```javascript
-POST:/api/post
+POST:/api/board
 {
-        "board_no" : 1,
 	"title" : "오늘 러닝했어요",
 	"contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
 }
@@ -87,9 +86,8 @@ response
 #### 4. 게시글 수정 - update
 request
 ```javascript
-PUT:/api/post/{post_no}
+PUT:/api/board/{board_no}
 {
-        "board_no" : 1,
 	"title" : "오늘 러닝했어요 D+11",
 	"contents" : "오늘은 5km를 뛰었어요. 11일 차에요. 회원님들은 얼마나 뛰셨나요?"
 }
@@ -102,7 +100,7 @@ response
 #### 5. 게시글 삭제 - delete
 request
 ```
-DELETE:/api/post/{post_no}
+DELETE:/api/board/{board_no}
 ```
 response
 ```
@@ -112,7 +110,7 @@ response
 #### 6. 반응 생성 - create
 request
 ```
-POST:/api/post/{post_no}/reaction/{reaction_no}
+POST:/api/board/{board_no}/reaction/{reaction_no}
 ```
 response
 ```
@@ -132,7 +130,7 @@ response
 #### 8. 댓글 생성 - create
 request
 ```javascript
-POST:/api/post/{post_no}/reply
+POST:/api/board/{board_no}/reply
 {
 	"contents" : "대단해요!"
 }
@@ -145,7 +143,7 @@ response
 #### 9. 댓글 삭제 - delete
 request
 ```
-DELETE:/api/post/{post_no}/reply/{reply_no}
+DELETE:/api/board/{board_no}/reply/{reply_no}
 ```
 response
 ```
