@@ -1,5 +1,17 @@
 # godLife
 
+## 작업순서 
+### 기획
+1. 화면 명세
+2. ERD 설계
+3. API 명세
+
+### 개발환경 세팅
+1. git 저장소 생성
+2. Spring io Initializer 생성
+3. MariaDB 10.6.15 버전 로컬 설치
+4. 프로젝트에 Java 17 세팅
+5. Spring Boot 구동 성공  
 
 ## ERD
 ![God Life ERD](/images/godLife.drawio.new.png)
