@@ -5,10 +5,10 @@ CREATE TABLE godlife.t_board
 	board_title VARCHAR(50) NOT NULL COMMENT '게시판 이름',
 	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
 	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	upd_timestamp TIMESTAMP NOT NULL COMMENT '수정 시간',
-	upd_user VARCHAR(50) NOT NULL COMMENT '수정자',
-	del_timestamp TIMESTAMP NOT NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NOT NULL COMMENT '삭제자'
+	upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
+	upd_user VARCHAR(50) NULL COMMENT '수정자',
+	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+	del_user VARCHAR(50) NULL COMMENT '삭제자'
 	)
 	;
 USE godlife;
