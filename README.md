@@ -27,9 +27,9 @@ GET:/api/post/{post_no}?board_no=1
 response
 ```javascript
 {
-	"title" : "오늘 러닝했어요",
-	"contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
-	"writer" : "김철수",
+	"post_title" : "오늘 러닝했어요",
+	"post_contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
+	"post_writer" : "김철수",
 	"ins_timestamp" : "2023-10-10 17:30:00",
 	"reactions" : {
 		"like" : 50,
@@ -89,6 +89,7 @@ POST:/api/post
 {
         "board_no" : 1,
 	"title" : "오늘 러닝했어요",
+        "writer" : "Lucy",
 	"contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
 }
 ```
@@ -103,6 +104,7 @@ PUT:/api/post/{post_no}
 {
         "board_no" : 1,
 	"title" : "오늘 러닝했어요 D+11",
+        "writer" : "Lucy",
 	"contents" : "오늘은 5km를 뛰었어요. 11일 차에요. 회원님들은 얼마나 뛰셨나요?"
 }
 ```
