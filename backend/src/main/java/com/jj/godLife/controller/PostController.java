@@ -2,12 +2,17 @@ package com.jj.godLife.controller;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
+
+    private final PostService postService;
 
     @GetMapping("/{post_no}")
     public ResponseEntity<String> get(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
@@ -33,7 +38,7 @@ public class PostController {
     @PostMapping
     public ResponseEntity<String> create(@RequestBody CreatePostRequest request){
         System.out.println("request = " + request);
-
+        postService.create(request);
         return ResponseEntity.ok("create");
     }
 
