@@ -14,6 +14,9 @@ CREATE TABLE godlife.t_board
 USE godlife;
 SHOW TABLES;
 
+DROP TABLE godlife.t_board;
+DROP TABLE godlife.t_reaction;
+DROP TABLE godlife.t_reply;
 
 CREATE TABLE godlife.t_post
 (
@@ -26,10 +29,10 @@ CREATE TABLE godlife.t_post
 		ON UPDATE CASCADE ON DELETE RESTRICT,
 	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
 	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	upd_timestamp TIMESTAMP NOT NULL COMMENT '수정 시간',
-	upd_user VARCHAR(50) NOT NULL COMMENT '수정자',
-	del_timestamp TIMESTAMP NOT NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NOT NULL COMMENT '삭제자'	
+	upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
+	upd_user VARCHAR(50) NULL COMMENT '수정자',
+	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+	del_user VARCHAR(50) NULL COMMENT '삭제자'	
 )
 ;
 
@@ -42,8 +45,8 @@ CREATE TABLE godlife.t_reaction
 	reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
 	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
 	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NOT NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NOT NULL COMMENT '삭제자'	
+	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+	del_user VARCHAR(50) NULL COMMENT '삭제자'	
 )
 ;
 
@@ -54,8 +57,8 @@ CREATE TABLE godlife.t_reply
 	reply_writer VARCHAR(50) NOT NULL COMMENT '댓글 작성자',
 	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
 	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NOT NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NOT NULL COMMENT '삭제자'	
+	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+	del_user VARCHAR(50) NULL COMMENT '삭제자'	
 )
 ;
 
@@ -70,8 +73,8 @@ CREATE TABLE godlife.t_reaction_mapping
 	reaction_writer VARCHAR(50) NOT NULL COMMENT '반응 작성자',
 	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
 	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NOT NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NOT NULL COMMENT '삭제자',
+	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+	del_user VARCHAR(50) NULL COMMENT '삭제자',
 	
 	FOREIGN KEY (reaction_no) REFERENCES t_reaction(reaction_no)
 		ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -83,4 +86,35 @@ CREATE TABLE godlife.t_reaction_mapping
 );
 
 show TABLES;
-```
+
+CREATE USER 'mysqlmysql';
+
+DROP TABLE godlife.t_board;
+DROP TABLE godlife.t_post;
+
+DROP TABLE godlife.t_reaction_mapping;
+
+SELECT * FROM t_post;
+
+show TABLES;
+
+
+use mysql;
+CREATE user 'godlife-api'@'localhost'IDENTIFIED BY 'apiPW';
+
+
+USE godlife;
+
+SHOW GRANTS FOR 'godlife-api'@'localhost';
+
+
+INSERT INTO t_board (board_title, ins_timestamp, ins_user) VALUES ('느긋하게',NOW(), 'admin');
+
+SELECT * FROM t_board;
+
+INSERT INTO t_board (board_title, ins_timestamp, ins_user) VALUES ('조화롭게', NOW(), 'admin');
+
+INSERT INTO t_board (board_title, ins_timestamp, ins_user) VALUES ('활기차게', NOW(), 'admin');
+
+
+SELECT * FROM t_post;
