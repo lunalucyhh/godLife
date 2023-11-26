@@ -1,12 +1,12 @@
 package com.jj.godLife.service;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
+import com.jj.godLife.controller.request.UpdatePostRequest;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.time.ZonedDateTime;
 
 @RequiredArgsConstructor
@@ -26,8 +26,28 @@ public class PostService {
 
         postRepository.save(newContents);
 
-        return new Post();
+        return newContents;
     }
 
+    @Transactional
+    public Post update(Long postNo, UpdatePostRequest request){
+        Post updateContents = postRepository.findById(postNo).get();
 
+        updateContents.setPostTitle(request.getTitle());
+        updateContents.setPostContents(request.getContents());
+        updateContents.setPostWriter(request.getWriter());
+        updateContents.setUpdTimestamp(ZonedDateTime.now());
+        updateContents.setUpdUser(request.getWriter());
+
+      
+        return updateContents;
+    }
+
+    @Transactional
+    public void delete(Long postNo){
+        Post deleteContents = postRepository.findById(postNo).get();
+
+        deleteContents.setDelTimestamp(ZonedDateTime.now());   
+
+    }
 }

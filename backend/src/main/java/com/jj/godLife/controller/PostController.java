@@ -2,8 +2,11 @@ package com.jj.godLife.controller;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.domain.Post;
 import com.jj.godLife.service.PostService;
 import lombok.RequiredArgsConstructor;
+
+import org.aspectj.weaver.patterns.VoidArrayFinder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,24 +39,24 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody CreatePostRequest request){
+    public ResponseEntity<Post> create(@RequestBody CreatePostRequest request){
         System.out.println("request = " + request);
-        postService.create(request);
-        return ResponseEntity.ok("create");
+        Post createPost = postService.create(request);        
+        return ResponseEntity.ok().body(createPost);
     }
 
     @PutMapping("/{post_no}")
-    public ResponseEntity<String> update(@PathVariable("post_no") Long postNo,
+    public ResponseEntity<Post> update(@PathVariable("post_no") Long postNo,
                                          @RequestBody UpdatePostRequest request){
         System.out.println("request = " + request);
-
-        return ResponseEntity.ok("update");
+        Post updatePost = postService.update(postNo, request);
+        return ResponseEntity.ok().body(updatePost);
     }
 
     @DeleteMapping("/{post_no}")
-    public ResponseEntity<String> delete(@PathVariable("post_no") Long postNo){
+    public ResponseEntity<Void> delete(@PathVariable("post_no") Long postNo){
         System.out.println("postNo = " + postNo);
-
-        return ResponseEntity.ok(":delete");
+        postService.delete(postNo);
+        return ResponseEntity.noContent().build();
     }
 }
