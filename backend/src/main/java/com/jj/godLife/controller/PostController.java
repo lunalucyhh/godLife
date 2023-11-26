@@ -5,8 +5,6 @@ import com.jj.godLife.controller.request.UpdatePostRequest;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.service.PostService;
 import lombok.RequiredArgsConstructor;
-
-import org.aspectj.weaver.patterns.VoidArrayFinder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +16,16 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/{post_no}")
-    public ResponseEntity<String> get(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
-    {
+    public ResponseEntity<Post> getDetail(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
+    {   
         System.out.println("postNo = " + postNo);
         System.out.println("boardNo = " + boardNo);
-        return ResponseEntity.ok("ok");
+        Post readDetail = postService.readDetail(postNo, boardNo);
+        return ResponseEntity.ok().body(readDetail);
     }
 
     @GetMapping("/title")
-    public ResponseEntity<String> getTitle(@RequestParam(name = "board_no", required = false) Long boardNo,
+    public ResponseEntity<Post> getTitle(@RequestParam(name = "board_no", required = false) Long boardNo,
                                            @RequestParam(name = "limit", required = false) Integer limit,
                                            @RequestParam(name = "offset", required = false) Integer offset,
                                            @RequestParam(name = "sort", required = false) String sort){
@@ -35,7 +34,7 @@ public class PostController {
         System.out.println("limit = " + limit);
         System.out.println("offset = " + offset);
         System.out.println("sort = " + sort);
-        return ResponseEntity.ok("title");
+        return ResponseEntity.ok().body(null);
     }
 
     @PostMapping

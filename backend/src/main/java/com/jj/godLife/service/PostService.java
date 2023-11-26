@@ -4,6 +4,8 @@ import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.repository.PostRepository;
+
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,17 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    public Post readDetail(Long postNo, Long boardNo){
+        Post readDetail = postRepository.findById(postNo).get();
+        System.out.println(readDetail);
+        return readDetail;
+    }
+
+    public Post readTitle() {
+        return new Post();
+    }
+
+    
     public Post create(CreatePostRequest request){
         Post newContents = new Post();
         newContents.setBoardNo(request.getBoardNo());
@@ -50,4 +63,7 @@ public class PostService {
         deleteContents.setDelTimestamp(ZonedDateTime.now());   
 
     }
+
+        
+
 }
