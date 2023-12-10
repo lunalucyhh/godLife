@@ -31,12 +31,6 @@ response
 	"post_contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
 	"post_writer" : "김철수",
 	"ins_timestamp" : "2023-10-10 17:30:00",
-	"reactions" : {
-		"like" : 50,
-		"cheering" : 10,
-		"awesome" : 30,
-		"funny" : 20,
-	},
 	"reply": [
 		{
 			"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
@@ -133,7 +127,33 @@ response
 201 Created
 ```
 
-#### 7. 반응 삭제 - delete
+#### 7.반응 조회 - get 
+request
+```
+GET:/api/post/{post_no}/reaction?limit=10&offset=0&sort=ins_timestamp_desc
+```
+response
+```
+[
+	{
+		"reaction_title": "좋아요",
+		"reaction_type": "L",
+		"total_count": 236
+	}, 
+	{
+		"reaction_title": "응원해요",
+		"reaction_type": "F",
+		"total_count": 119
+	},
+        {
+		"reaction_title": "재밋어요",
+		"reaction_type": "I",
+		"total_count": 12
+	}
+]
+```
+
+#### 8. 반응 삭제 - delete
 request
 ```
 DELETE:/api/board/{board_no}/reaction/{reaction_no}
@@ -143,7 +163,7 @@ response
 204 No Content
 ```
 
-#### 8. 댓글 생성 - create
+#### 9. 댓글 생성 - create
 request
 ```javascript
 POST:/api/post/{post_no}/reply
@@ -155,8 +175,29 @@ response
 ```
 201 Created
 ```
+#### 10. 댓글 조회 - create
+request
+```javascript
+POST:/api/post/{post_no}/reply
+[
+	{
+		"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
+		"ins_user" : "김영희",
+		"ins_timestamp" : "2023-10-10 17:50:00",
+	},
+	{
+		"contents": "저는 오늘 문밖에 못나갔습니다ㅋㅋ.. 회원님들 대단해요!",
+		"ins_user": "최민지",
+		"ins_timestamp": "2023-10-10 20:50:00",
+	}
+]
+```
+response
+```
+201 Created
+```
 
-#### 9. 댓글 삭제 - delete
+#### 11. 댓글 삭제 - delete
 request
 ```
 DELETE:/api/post/{post_no}/reply/{reply_no}
@@ -166,7 +207,7 @@ response
 204 No Content
 ```
 
-#### 10. 반응 종류 조회 API - read
+#### 12. 반응 종류 조회 API - read
 request
 ```
 GET:/api/reactions
@@ -176,19 +217,18 @@ response
 [
 	{
 		"reaction_no" : 1,
-		"reaction_title" : "좋아요"
+		"reaction_title" : "좋아요",
+		"reaction_type" : "L"
 	},
 	{
 		"reaction_no" : 2,
-		"reaction_title" : "응원해요"
+		"reaction_title" : "응원해요",
+		"reaction_type" : "F"
 	},
 	{
 		"reaction_no" : 3,
-		"reaction_title" : "멋져요"
-	},
-	{
-		"reaction_no" : 4,
-		"reaction_title" : "재밋어요"
+		"reaction_title" : "재밋어요",
+		"reaction_type": "L"
 	}
 ]
 ```
