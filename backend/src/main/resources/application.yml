@@ -13,4 +13,5 @@ spring:
     database-platform: org.hibernate.dialect.MariaDBDialect
     properties:
       hibernate:
-        dialect = org.hibernate.dialect.MariaDBDialect
+        dialect: org.hibernate.dialect.MariaDBDialect
+        use-new-id-generator-mappings: false
