@@ -30,23 +30,11 @@ response
 	"post_title" : "오늘 러닝했어요",
 	"post_contents" : "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
 	"post_writer" : "김철수",
-	"ins_timestamp" : "2023-10-10 17:30:00",
-	"reply": [
-		{
-			"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
-			"writer" : "김영희",
-			"ins_timestamp" : "2023-10-10 17:50:00",
-		},
-		{
-			"contents": "저는 오늘 문밖에 못나갔습니다ㅋㅋ.. 회원님들 대단해요!",
-			"writer": "최민지",
-			"ins_timestamp": "2023-10-10 20:50:00",
-		}
-	]
+	"ins_timestamp" : "2023-10-10 17:30:00"
 }
 ```
 
-#### 2. 게시글 조회 (리스트) - read
+#### 2. 게시글 제목 조회 (리스트) - read
 request
 ```
 GET:/api/post/title?board_no=1&limit=10&offset=0&sort=ins_timestamp_desc
@@ -55,22 +43,22 @@ response
 ```javascript
 [
 	{
-		"board_no": 4,
+		"post_no": 4,
 		"title": "오늘 러닝했어요",
 		"ins_timestamp": "2023-10-10 22:30:00",
 	}, 
 	{
-		"board_no": 3,
+		"post_no": 3,
 		"title": "오늘 일기썼습니다",
 		"ins_timestamp": "2023-10-10 21:30:00",
 	},
 	{
-		"board_no": 2,
+		"post_no": 2,
 		"title": "오늘 시험 합격했어요",
 		"ins_timestamp": "2023-10-10 20:30:00",
 	},
 	{
-		"board_no": 1,
+		"post_no": 1,
 		"title": "기분이 좋아요",
 		"ins_timestamp": "2023-10-10 19:30:00",
 	}
