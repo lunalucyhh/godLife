@@ -23,8 +23,9 @@ public class PostService {
         return readDetail;
     }
 
-    public Post readTitle() {
-        return new Post();
+    public Post readTitle(Long boardNo, Integer limit, Integer offset, String sort) {
+        Post readTitle = postRepository.findById(boardNo).get();
+        return readTitle;
     }
 
     

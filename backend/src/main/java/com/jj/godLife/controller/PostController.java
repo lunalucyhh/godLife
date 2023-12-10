@@ -34,7 +34,8 @@ public class PostController {
         System.out.println("limit = " + limit);
         System.out.println("offset = " + offset);
         System.out.println("sort = " + sort);
-        return ResponseEntity.ok().body(null);
+        Post readTitle = postService.readTitle(boardNo, limit, offset, sort);
+        return ResponseEntity.ok().body(readTitle);
     }
 
     @PostMapping
