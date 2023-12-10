@@ -37,7 +37,7 @@ response
 #### 2. 게시글 제목 조회 (리스트) - read
 request
 ```
-GET:/api/post/title?board_no=1&limit=10&offset=0&sort=ins_timestamp_desc
+GET:/api/post/title?board_no=1&limit=10&page=1&sort=ins_timestamp_desc
 ```
 response
 ```javascript
@@ -118,7 +118,7 @@ response
 #### 7.반응 조회 - get 
 request
 ```
-GET:/api/post/{post_no}/reaction?limit=10&offset=0&sort=ins_timestamp_desc
+GET:/api/post/{post_no}/reaction
 ```
 response
 ```
@@ -166,7 +166,7 @@ response
 #### 10. 댓글 조회 - create
 request
 ```javascript
-POST:/api/post/{post_no}/reply
+GET:/api/post/{post_no}/reply?limit=10&page=1&sort=ins_timestamp_desc
 [
 	{
 		"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
