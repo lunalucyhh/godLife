@@ -5,11 +5,14 @@ import com.jj.godLife.controller.request.UpdatePostRequest;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.repository.PostRepository;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -23,8 +26,11 @@ public class PostService {
         return readDetail;
     }
 
-    public Post readTitle(Long boardNo, Integer limit, Integer offset, String sort) {
-        Post readTitle = postRepository.findById(boardNo).get();
+    
+    public List<Post> readTitle(String insTimestamp, Long boardNo, Integer page, Integer limit) {
+        int offset = (page - 1) * limit;
+        PageRequest paging = PageRequest.of(offset, limit, Sort.by("insTimestamp").descending());
+        List<Post> readTitle = postRepository.findAllByBoardNo(boardNo, paging);
         return readTitle;
     }
 
@@ -64,6 +70,11 @@ public class PostService {
         deleteContents.setDelTimestamp(ZonedDateTime.now());   
 
     }
+
+
+    
+
+ 
 
         
 

@@ -5,6 +5,9 @@ import com.jj.godLife.controller.request.UpdatePostRequest;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.service.PostService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostService postService;
+    
 
     @GetMapping("/{post_no}")
     public ResponseEntity<Post> getDetail(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
@@ -21,20 +25,25 @@ public class PostController {
         System.out.println("postNo = " + postNo);
         System.out.println("boardNo = " + boardNo);
         Post readDetail = postService.readDetail(postNo, boardNo);
+   
+
         return ResponseEntity.ok().body(readDetail);
     }
+    
 
     @GetMapping("/title")
-    public ResponseEntity<Post> getTitle(@RequestParam(name = "board_no", required = false) Long boardNo,
+    public ResponseEntity<List<Post>> getTitle(@PathVariable("ins_timestamp") String insTimestamp,
+                                           @RequestParam(name = "board_no", required = false) Long boardNo,
                                            @RequestParam(name = "limit", required = false) Integer limit,
-                                           @RequestParam(name = "offset", required = false) Integer offset,
-                                           @RequestParam(name = "sort", required = false) String sort){
+                                           @RequestParam(name = "page", required = false) Integer page
+                                           
+                                           ){
 
         System.out.println("boardNo = " + boardNo);
         System.out.println("limit = " + limit);
-        System.out.println("offset = " + offset);
-        System.out.println("sort = " + sort);
-        Post readTitle = postService.readTitle(boardNo, limit, offset, sort);
+        System.out.println("page = " + page);
+ 
+        List<Post> readTitle = postService.readTitle(insTimestamp, boardNo, page, limit);
         return ResponseEntity.ok().body(readTitle);
     }
 
