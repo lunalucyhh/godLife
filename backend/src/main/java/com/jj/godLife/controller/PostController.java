@@ -32,18 +32,18 @@ public class PostController {
     
 
     @GetMapping("/title")
-    public ResponseEntity<List<Post>> getTitle(@PathVariable("ins_timestamp") String insTimestamp,
+    public ResponseEntity<List<Post>> getTitle(
                                            @RequestParam(name = "board_no", required = false) Long boardNo,
                                            @RequestParam(name = "limit", required = false) Integer limit,
-                                           @RequestParam(name = "page", required = false) Integer page
-                                           
+                                           @RequestParam(name = "page", required = false) Integer page,
+                                           @RequestParam(name = "sort", required = false) String sort
                                            ){
 
         System.out.println("boardNo = " + boardNo);
         System.out.println("limit = " + limit);
         System.out.println("page = " + page);
- 
-        List<Post> readTitle = postService.readTitle(insTimestamp, boardNo, page, limit);
+        System.out.println("sort = " + sort);
+        List<Post> readTitle = postService.readTitle(boardNo, page, limit, sort);
         return ResponseEntity.ok().body(readTitle);
     }
 

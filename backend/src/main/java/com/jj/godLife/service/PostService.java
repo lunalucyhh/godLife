@@ -27,10 +27,10 @@ public class PostService {
     }
 
     
-    public List<Post> readTitle(String insTimestamp, Long boardNo, Integer page, Integer limit) {
+    public List<Post> readTitle(Long boardNo, Integer page, Integer limit, String sort) {
         int offset = (page - 1) * limit;
-        PageRequest paging = PageRequest.of(offset, limit, Sort.by("insTimestamp").descending());
-        List<Post> readTitle = postRepository.findAllByBoardNo(boardNo, paging);
+        PageRequest paging = PageRequest.of(offset, limit, Sort.by(Sort.Direction.));
+        List<Post> readTitle = postRepository.findByBoardNo(boardNo,paging);
         return readTitle;
     }
 
