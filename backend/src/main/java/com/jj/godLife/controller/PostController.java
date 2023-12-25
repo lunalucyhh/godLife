@@ -2,6 +2,7 @@ package com.jj.godLife.controller;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.controller.response.PostTitleResponse;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -32,18 +33,18 @@ public class PostController {
     
 
     @GetMapping("/title")
-    public ResponseEntity<List<Post>> getTitle(
+    public ResponseEntity<List<PostTitleResponse>> getTitle(
                                            @RequestParam(name = "board_no", required = false) Long boardNo,
                                            @RequestParam(name = "limit", required = false) Integer limit,
                                            @RequestParam(name = "page", required = false) Integer page,
                                            @RequestParam(name = "sort", required = false) String sort
                                            ){
-
+        
         System.out.println("boardNo = " + boardNo);
         System.out.println("limit = " + limit);
         System.out.println("page = " + page);
-        System.out.println("sort = " + sort);
-        List<Post> readTitle = postService.readTitle(boardNo, page, limit, sort);
+ 
+        List<PostTitleResponse> readTitle = postService.readTitle(boardNo, page, limit, sort);
         return ResponseEntity.ok().body(readTitle);
     }
 

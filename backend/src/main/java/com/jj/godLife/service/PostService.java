@@ -2,6 +2,7 @@ package com.jj.godLife.service;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.controller.response.PostTitleResponse;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.repository.PostRepository;
 
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,18 +29,26 @@ public class PostService {
     }
 
     
-    public List<Post> readTitle(Long boardNo, Integer page, Integer limit, String sort) {
+    public List<PostTitleResponse> readTitle(Long boardNo, Integer page, Integer limit, String sort) {
         int offset = (page - 1) * limit;
         String[] array = sort.split("_");
-        String dir = array[1].toUpperCase();
-        String orderBy = String.format("%s_%s", array[0], array[1]
+        String dir = array[2].toUpperCase();
+        String orderBy = String.format("%s%s", array[0], array[1]
                                         .substring(0, 1).toUpperCase() 
-                                        + array[1].substring(1));
-        System.out.println(dir);
-        System.out.println(orderBy);
+                                        + array[1].substring(1)); // insTimestamp
+    
         PageRequest paging = PageRequest.of(offset, limit, Sort.by(Sort.Direction.valueOf(dir), orderBy));
         List<Post> readTitle = postRepository.findAllByBoardNo(boardNo,paging);
-        return readTitle;
+        List<PostTitleResponse> postTitleResponse = new ArrayList();
+        
+        for (Post post : readTitle) {
+            PostTitleResponse title = new PostTitleResponse();
+            title.setPostNo(post.getPostNo());
+            title.setPostTitle(post.getPostTitle());
+            title.setInsTimestamp(post.getInsTimestamp());
+            postTitleResponse.add(title);
+        }
+        return postTitleResponse;
     }
 
     
