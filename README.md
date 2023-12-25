@@ -169,11 +169,14 @@ request
 GET:/api/post/{post_no}/reply?limit=10&page=1&sort=ins_timestamp_desc
 [
 	{
+		"reply_no" : 1,
 		"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
 		"ins_user" : "김영희",
 		"ins_timestamp" : "2023-10-10 17:50:00",
 	},
 	{
+		
+		"reply_no" : 1,
 		"contents": "저는 오늘 문밖에 못나갔습니다ㅋㅋ.. 회원님들 대단해요!",
 		"ins_user": "최민지",
 		"ins_timestamp": "2023-10-10 20:50:00",
