@@ -45,7 +45,7 @@ public class ReplyService {
         deleteReply.setDelTimestamp(ZonedDateTime.now());
     }
 
-    public Reply readReply(Long postNo, Integer limit, Integer offset, int sort) {
+    public Reply readReply(Long postNo, Integer limit, Integer offset, String sort) {
         return null;
     }
 

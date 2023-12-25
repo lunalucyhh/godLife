@@ -29,8 +29,15 @@ public class PostService {
     
     public List<Post> readTitle(Long boardNo, Integer page, Integer limit, String sort) {
         int offset = (page - 1) * limit;
-        PageRequest paging = PageRequest.of(offset, limit, Sort.by(Sort.Direction.));
-        List<Post> readTitle = postRepository.findByBoardNo(boardNo,paging);
+        String[] array = sort.split("_");
+        String dir = array[1].toUpperCase();
+        String orderBy = String.format("%s_%s", array[0], array[1]
+                                        .substring(0, 1).toUpperCase() 
+                                        + array[1].substring(1));
+        System.out.println(dir);
+        System.out.println(orderBy);
+        PageRequest paging = PageRequest.of(offset, limit, Sort.by(Sort.Direction.valueOf(dir), orderBy));
+        List<Post> readTitle = postRepository.findAllByBoardNo(boardNo,paging);
         return readTitle;
     }
 

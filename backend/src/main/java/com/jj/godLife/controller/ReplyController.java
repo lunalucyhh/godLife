@@ -20,7 +20,7 @@ public class ReplyController {
     public ResponseEntity<Reply> getReply(@RequestParam(name = "post_no", required = false) Long postNo,
                                             @RequestParam(name = "limit", required = false) Integer limit,
                                            @RequestParam(name = "offset", required = false) Integer offset,
-                                           @RequestParam(name = "sort", required = false) int sort){
+                                           @RequestParam(name = "sort", required = false) String sort){
         
         System.out.println("postNo = " + postNo);
         System.out.println("limit = " + limit);
