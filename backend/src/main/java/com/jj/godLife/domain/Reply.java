@@ -24,6 +24,9 @@ public class Reply {
     @JsonProperty("reply_no")
     private Long replyNo;
 
+    @JsonProperty("post_no")
+    private Long postNo;
+
     @JsonProperty("reply_contents")
     private String replyContents;
 
