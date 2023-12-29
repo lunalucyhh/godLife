@@ -118,3 +118,10 @@ INSERT INTO t_board (board_title, ins_timestamp, ins_user) VALUES ('활기차게
 
 
 SELECT * FROM t_post;
+
+
+INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('좋아요','L', NOW(), 'admin');
+INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('응원해요','F', NOW(), 'admin');
+INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('재밌어요','I', NOW(), 'admin');
+INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('괜찮아요','O', NOW(), 'admin');
+
