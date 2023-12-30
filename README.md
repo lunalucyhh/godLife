@@ -105,17 +105,7 @@ response
 204 No Content
 ```
 
-#### 6. 반응 생성 - create
-request
-```
-POST:/api/post/{post_no}/reaction/{reaction_no}
-```
-response
-```
-201 Created
-```
-
-#### 7.반응 조회 - get 
+#### 6. 게시글 반응 조회 - get 
 request
 ```
 GET:/api/post/{post_no}/reaction
@@ -124,46 +114,34 @@ response
 ```
 [
 	{
-		"reaction_title": "좋아요",
 		"reaction_type": "L",
 		"total_count": 236
 	}, 
 	{
-		"reaction_title": "응원해요",
 		"reaction_type": "F",
 		"total_count": 119
 	},
         {
-		"reaction_title": "재밋어요",
 		"reaction_type": "I",
 		"total_count": 12
 	}
 ]
 ```
 
-#### 8. 반응 삭제 - delete
-request
-```
-DELETE:/api/board/{board_no}/reaction/{reaction_no}
-```
-response
-```
-204 No Content
-```
-
-#### 9. 댓글 생성 - create
+#### 7. 댓글 생성 - create
 request
 ```javascript
 POST:/api/post/{post_no}/reply
 {
-	"contents" : "대단해요!"
+    "contents" : "대단해요!"
 }
 ```
 response
 ```
 201 Created
 ```
-#### 10. 댓글 조회 - create
+
+#### 8. 댓글 조회 - create
 request
 ```javascript
 GET:/api/post/{post_no}/reply?limit=10&page=1&sort=ins_timestamp_desc
@@ -173,6 +151,16 @@ GET:/api/post/{post_no}/reply?limit=10&page=1&sort=ins_timestamp_desc
 		"contents" : "와 대단해요. 저는 오늘 3km 뛰었어요.",
 		"ins_user" : "김영희",
 		"ins_timestamp" : "2023-10-10 17:50:00",
+		"reactions" : [
+			{
+				"reaction_type": "L",
+				"total_count": 10
+			}, 
+			{
+				"reaction_type": "F",
+				"total_count": 5
+			}
+		]
 	},
 	{
 		
@@ -180,6 +168,16 @@ GET:/api/post/{post_no}/reply?limit=10&page=1&sort=ins_timestamp_desc
 		"contents": "저는 오늘 문밖에 못나갔습니다ㅋㅋ.. 회원님들 대단해요!",
 		"ins_user": "최민지",
 		"ins_timestamp": "2023-10-10 20:50:00",
+		"reactions" : [
+			{
+				"reaction_type": "L",
+				"total_count": 10
+			}, 
+			{
+				"reaction_type": "O",
+				"total_count": 5
+			}
+		]
 	}
 ]
 ```
@@ -188,7 +186,7 @@ response
 201 Created
 ```
 
-#### 11. 댓글 삭제 - delete
+#### 9. 댓글 삭제 - delete
 request
 ```
 DELETE:/api/post/{post_no}/reply/{reply_no}
@@ -198,7 +196,7 @@ response
 204 No Content
 ```
 
-#### 12. 반응 종류 조회 API - read
+#### 10. 반응 종류 조회 API - read
 request
 ```
 GET:/api/reactions
@@ -220,10 +218,45 @@ response
 		"reaction_no" : 3,
 		"reaction_title" : "재밋어요",
 		"reaction_type": "L"
+	},
+	{
+		"reaction_no" : 4,
+		"reaction_title" : "괜찮아요",
+		"reaction_type": "O"
 	}
 ]
 ```
 
+#### 11. 반응 생성 - create
+request
+```
+POST:/api/reaction/{reaction_no}
+// 게시글에 대한 반응 
+{
+    "post_no" : 3,
+    "ins_user" : "lucy"
+}
+// 댓글에 대한 반응
+{
+    "reply_no" : 3,
+    "ins_user" : "lucy"
+}
+```
+response
+```
+201 Created
+```
 
 
-
+#### 12. 반응 삭제 - delete
+request
+```
+// 게시글에 대한 반응 삭제
+DELETE:/api/reaction/{reaction_no}?post_no=3
+// 댓글에 대한 반응 삭제
+DELETE:/api/reaction/{reaction_no}?reply_no=5
+```
+response
+```
+204 No Content
+```
