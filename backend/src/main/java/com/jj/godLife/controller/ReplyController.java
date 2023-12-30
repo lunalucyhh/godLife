@@ -27,9 +27,6 @@ public class ReplyController {
                                             @RequestParam(name = "page", required = false) Integer page,
                                             @RequestParam(name = "sort", required = false) String sort){
         
-        System.out.println("postNo = " + postNo);
-        System.out.println("limit = " + limit);
-        System.out.println("sort = " + sort);
         List<ReplyResponse> readReply = replyService.readReply(postNo, page, limit, sort);
         return ResponseEntity.ok().body(readReply);
     }
