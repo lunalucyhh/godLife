@@ -3,12 +3,10 @@ package com.jj.godLife.service;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
 import com.jj.godLife.repository.ReactionRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,6 @@ public class ReactionService {
 
     }
     */
-
 
     public List<ReactionTypeResponse> findReactions() {
 
@@ -40,7 +37,7 @@ public class ReactionService {
 
         return reactionTypeResponse;
     }
-/*
+ /*
     public void delete(Long reactionNo){
         Reaction deleteReaction = reactionRepository.findById(reactionNo).get();
         deleteReaction.setDelTimestamp(ZonedDateTime.now());

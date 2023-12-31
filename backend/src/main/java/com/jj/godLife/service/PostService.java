@@ -2,6 +2,7 @@ package com.jj.godLife.service;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.controller.response.PostDetailResponse;
 import com.jj.godLife.controller.response.PostTitleResponse;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.repository.PostRepository;
@@ -22,10 +23,15 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Post readDetail(Long postNo, Long boardNo){
+    public PostDetailResponse readDetail(Long postNo, Long boardNo){
         Post readDetail = postRepository.findById(postNo).get();
-        System.out.println(readDetail);
-        return readDetail;
+        PostDetailResponse detail = new PostDetailResponse();
+        detail.setPostTitle(readDetail.getPostTitle());
+        detail.setPostContents(readDetail.getPostContents());
+        detail.setPostWriter(readDetail.getPostWriter());
+        detail.setInsTimestamp(readDetail.getInsTimestamp());
+
+        return detail;
     }
 
     

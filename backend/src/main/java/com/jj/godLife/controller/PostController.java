@@ -2,6 +2,7 @@ package com.jj.godLife.controller;
 
 import com.jj.godLife.controller.request.CreatePostRequest;
 import com.jj.godLife.controller.request.UpdatePostRequest;
+import com.jj.godLife.controller.response.PostDetailResponse;
 import com.jj.godLife.controller.response.PostTitleResponse;
 import com.jj.godLife.domain.Post;
 import com.jj.godLife.service.PostService;
@@ -21,14 +22,14 @@ public class PostController {
     
 
     @GetMapping("/{post_no}")
-    public ResponseEntity<Post> getDetail(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
+    public ResponseEntity<PostDetailResponse> getDetail(@PathVariable("post_no") Long postNo, @RequestParam(name = "board_no", required = false) Long boardNo)
     {   
         System.out.println("postNo = " + postNo);
         System.out.println("boardNo = " + boardNo);
-        Post readDetail = postService.readDetail(postNo, boardNo);
+        PostDetailResponse detail = postService.readDetail(postNo, boardNo);
    
 
-        return ResponseEntity.ok().body(readDetail);
+        return ResponseEntity.ok().body(detail);
     }
     
 
