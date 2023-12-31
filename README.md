@@ -260,3 +260,27 @@ response
 ```
 204 No Content
 ```
+
+
+#### 13. 게시판 조회 - get (23.12.31 추가)
+requset 
+```
+GET:/api/board
+```
+response
+```
+[
+    {
+        "board_no": 1,
+        "board_title": "느긋하게"
+    },
+    {
+        "board_no": 2,
+        "board_title": "조화롭게"
+    },
+    {
+        "board_no": 3,
+        "board_title": "활기차게"
+    }
+]
+```
