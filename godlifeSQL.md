@@ -125,3 +125,4 @@ INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) 
 INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('재밌어요','I', NOW(), 'admin');
 INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('괜찮아요','O', NOW(), 'admin');
 
+ALTER TABLE t_reply ADD COLUMN post_no BIGINT AFTER reply_no;
