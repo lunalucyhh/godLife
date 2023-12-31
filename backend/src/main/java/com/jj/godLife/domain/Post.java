@@ -13,7 +13,6 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 @Entity
 @Table(name = "t_post")
 public class Post {
