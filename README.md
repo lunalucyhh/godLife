@@ -199,28 +199,24 @@ response
 #### 10. 반응 종류 조회 API - read
 request
 ```
-GET:/api/reactions
+GET:/api/reaction
 ```
 response	
 ```javascript
 [
 	{
-		"reaction_no" : 1,
 		"reaction_title" : "좋아요",
 		"reaction_type" : "L"
 	},
 	{
-		"reaction_no" : 2,
 		"reaction_title" : "응원해요",
 		"reaction_type" : "F"
 	},
 	{
-		"reaction_no" : 3,
 		"reaction_title" : "재밋어요",
 		"reaction_type": "L"
 	},
 	{
-		"reaction_no" : 4,
 		"reaction_title" : "괜찮아요",
 		"reaction_type": "O"
 	}
@@ -230,13 +226,14 @@ response
 #### 11. 반응 생성 - create
 request
 ```
-POST:/api/reaction/{reaction_no}
-// 게시글에 대한 반응 
+Uri : POST:/api/reaction/{reaction_type}
+Request Body : 
+// 예시1. 게시글에 대한 반응 
 {
     "post_no" : 3,
     "ins_user" : "lucy"
 }
-// 댓글에 대한 반응
+// 예시2. 댓글에 대한 반응
 {
     "reply_no" : 3,
     "ins_user" : "lucy"
@@ -245,6 +242,21 @@ POST:/api/reaction/{reaction_no}
 response
 ```
 201 Created
+// 예시1. 게시글에 대한 반응
+{
+    "post_no": 3,
+    "reply_no": null,
+    "reaction_type": "L",
+    "ins_user": "lucy"
+}
+// 예시2. 댓글에 대한 반응
+
+{
+    "post_no": null,
+    "reply_no": 3,
+    "reaction_type": "L",
+    "ins_user": "lucy"
+}
 ```
 
 
