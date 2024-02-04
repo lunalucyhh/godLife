@@ -51,7 +51,6 @@ CREATE TABLE godlife.t_reaction_mapping (
     reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
     post_no BIGINT UNSIGNED NULL COMMENT '게시글 번호',
     reply_no BIGINT UNSIGNED NULL COMMENT '댓글 번호',
-    reaction_writer VARCHAR(50) NOT NULL COMMENT '반응 작성자',
     ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
     ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
     del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
