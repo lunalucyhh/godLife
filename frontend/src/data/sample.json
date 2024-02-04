@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"post_title": "오늘 러닝했어요",
+		"post_contents": "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
+		"post_writer": "김철수",
+		"ins_timestamp": "2023-10-10 17:30:00"
+	},
+	{
+		"id": 2,
+		"post_title": "오늘 러닝했어요",
+		"post_contents": "오늘은 5km를 뛰었어요. 회원님들은 얼마나 뛰셨나요?",
+		"post_writer": "김철수",
+		"ins_timestamp": "2023-10-10 17:30:00"
+	}
+]
