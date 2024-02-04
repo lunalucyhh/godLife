@@ -2,65 +2,65 @@
 USE godlife;
 
 CREATE TABLE godlife.t_board (
-	board_no BIGINT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시판 번호',
-	board_title VARCHAR(50) NOT NULL COMMENT '게시판 이름',
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
-	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
-	upd_user VARCHAR(50) NULL COMMENT '수정자',
-	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NULL COMMENT '삭제자'
+    board_no BIGINT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시판 번호',
+    board_title VARCHAR(50) NOT NULL COMMENT '게시판 이름',
+    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
+    ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
+    upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
+    upd_user VARCHAR(50) NULL COMMENT '수정자',
+    del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+    del_user VARCHAR(50) NULL COMMENT '삭제자'
 );
 
 CREATE TABLE godlife.t_post (
-	post_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시글 번호',
-	post_title VARCHAR(50) NOT NULL COMMENT '게시글 제목',
-	post_contents LONGTEXT NOT NULL COMMENT '게시글 내용',
-	post_writer VARCHAR(50) NOT NULL COMMENT '작성자',
-	board_no BIGINT UNSIGNED NOT NULL,
-	FOREIGN KEY (board_no) REFERENCES t_board (board_no) ON UPDATE CASCADE ON DELETE RESTRICT,
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
-	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
-	upd_user VARCHAR(50) NULL COMMENT '수정자',
-	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NULL COMMENT '삭제자'
+    post_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시글 번호',
+    post_title VARCHAR(50) NOT NULL COMMENT '게시글 제목',
+    post_contents LONGTEXT NOT NULL COMMENT '게시글 내용',
+    post_writer VARCHAR(50) NOT NULL COMMENT '작성자',
+    board_no BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (board_no) REFERENCES t_board (board_no) ON UPDATE CASCADE ON DELETE RESTRICT,
+    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
+    ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
+    upd_timestamp TIMESTAMP NULL COMMENT '수정 시간',
+    upd_user VARCHAR(50) NULL COMMENT '수정자',
+    del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+    del_user VARCHAR(50) NULL COMMENT '삭제자'
 );
 
 CREATE TABLE godlife.t_reaction (
-	reaction_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '반응 번호',
-	reaction_title VARCHAR(50) NOT NULL COMMENT '반응 이름',
-	reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
-	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NULL COMMENT '삭제자'
+    reaction_type CHAR(1) NOT NULL PRIMARY KEY COMMENT '반응 타입',
+    reaction_title VARCHAR(50) NOT NULL COMMENT '반응 이름',
+    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
+    ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
+    del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+    del_user VARCHAR(50) NULL COMMENT '삭제자'
 );
 
 CREATE TABLE godlife.t_reply (
-	reply_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '댓글  번호',
-	reply_contents LONGTEXT NOT NULL COMMENT '댓글  내용',
-	reply_writer VARCHAR(50) NOT NULL COMMENT '댓글 작성자',
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
-	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NULL COMMENT '삭제자'
+    reply_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '댓글  번호',
+    reply_contents LONGTEXT NOT NULL COMMENT '댓글  내용',
+    reply_writer VARCHAR(50) NOT NULL COMMENT '댓글 작성자',
+    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
+    ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
+    del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+    del_user VARCHAR(50) NULL COMMENT '삭제자'
 );
 
 CREATE TABLE godlife.t_reaction_mapping (
-	mapping_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '매핑 번호',
-	reaction_no BIGINT UNSIGNED NOT NULL COMMENT '반응 번호',
-	post_no BIGINT UNSIGNED NOT NULL COMMENT '게시글 번호',
-	reply_no BIGINT UNSIGNED NOT NULL COMMENT '댓글 번호',
-	reaction_writer VARCHAR(50) NOT NULL COMMENT '반응 작성자',
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
-	ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
-	del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
-	del_user VARCHAR(50) NULL COMMENT '삭제자',
-	FOREIGN KEY (reaction_no) REFERENCES t_reaction(reaction_no) ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY (post_no) REFERENCES t_post(post_no) ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY (reply_no) REFERENCES t_reply(reply_no) ON UPDATE CASCADE ON DELETE RESTRICT
+    mapping_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '매핑 번호',
+    reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
+    post_no BIGINT UNSIGNED NULL COMMENT '게시글 번호',
+    reply_no BIGINT UNSIGNED NULL COMMENT '댓글 번호',
+    reaction_writer VARCHAR(50) NOT NULL COMMENT '반응 작성자',
+    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
+    ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
+    del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
+    del_user VARCHAR(50) NULL COMMENT '삭제자',
+    FOREIGN KEY (reaction_type) REFERENCES t_reaction(reaction_type) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (post_no) REFERENCES t_post(post_no) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (reply_no) REFERENCES t_reply(reply_no) ON UPDATE CASCADE ON DELETE RESTRICT
 );
+
 
 SHOW TABLES;
 
@@ -87,3 +87,12 @@ INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) 
 INSERT INTO t_reaction (reaction_title, reaction_type, ins_timestamp, ins_user) VALUES ('괜찮아요','O', NOW(), 'admin');
 
 ALTER TABLE t_reply ADD COLUMN post_no BIGINT AFTER reply_no;
+
+----
+/** 24.02.04 ERD 변경사항 **/
+t_reaction 테이블의 PK 인 reaction_no BIGINT 를 reaction_type CHAR(1) 로 변경. 
+-> t_reaction_mapping 과 t_reaction 테이블을 삭제하고 다시 만들어 주세요.
+-> 기본 반응 종류 Inser 쿼리를 다시 실행해 주세요. 
+
+DROP TABLE godlife.t_reaction_mapping;
+DROP TABLE godlife.t_reaction;
