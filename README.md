@@ -264,9 +264,9 @@ response
 request
 ```
 // 게시글에 대한 반응 삭제
-DELETE:/api/reaction/{reaction_no}?post_no=3
+DELETE:/api/reaction/{reaction_type}?post_no=3&ins_user=lucy
 // 댓글에 대한 반응 삭제
-DELETE:/api/reaction/{reaction_no}?reply_no=5
+DELETE:/api/reaction/{reaction_type}?reply_no=7&ins_user=jhh
 ```
 response
 ```
