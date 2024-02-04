@@ -214,7 +214,7 @@ response
 	},
 	{
 		"reaction_title" : "재밋어요",
-		"reaction_type": "L"
+		"reaction_type": "I"
 	},
 	{
 		"reaction_title" : "괜찮아요",
