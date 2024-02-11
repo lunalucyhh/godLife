@@ -1,7 +1,9 @@
 package com.jj.godLife.controller;
 
+import com.jj.godLife.controller.request.CreateReactionRequest;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
+import com.jj.godLife.domain.ReactionMapping;
 import com.jj.godLife.service.ReactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,17 @@ public class ReactionController {
         return ResponseEntity.ok().body(readReactions);
     }
 
+
+    @PostMapping("/reaction/{reaction_type}")
+    public ResponseEntity<ReactionMapping> create(@PathVariable("reaction_type") String reactionType,
+                                            @RequestBody CreateReactionRequest request
+                                           ){
+        System.out.println(reactionType);
+        System.out.println(request);
+        request.setReactionType(reactionType);
+        ReactionMapping createReaction = reactionService.create(request);
+        return ResponseEntity.ok().body(createReaction);
+    }
 /*
 
     @GetMapping
@@ -33,13 +46,7 @@ public class ReactionController {
                                                          ){
 
     }
-    @PostMapping("/{reaction_no}")
-    public ResponseEntity<Reaction> create(@PathVariable("post_no"),
-                                            @PathVariable("reaction_no")
-                                           ){
-        Reaction createReaction = reactionService.create();
-        return ResponseEntity.ok().body();
-    }
+   
 
     @DeleteMapping("/{reaction_no")
     public ResponseEntity<Reaction> delete(@PathVariable("post_no"),

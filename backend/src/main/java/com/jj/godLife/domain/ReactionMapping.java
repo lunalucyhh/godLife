@@ -26,11 +26,11 @@ public class ReactionMapping {
     
 
     @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @JsonProperty("mappingNo")
+    @JsonProperty("mapping_no")
     private Long mappingNo;
 
-    @JsonProperty("reaction_no")
-    private Long reactionNo;
+    @JsonProperty("reaction_type")
+    private String reactionType;
 
     @JsonProperty("post_no")
     private Long postNo;
