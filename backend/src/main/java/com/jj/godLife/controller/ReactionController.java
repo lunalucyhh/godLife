@@ -38,6 +38,17 @@ public class ReactionController {
         ReactionMapping createReaction = reactionService.create(request);
         return ResponseEntity.ok().body(createReaction);
     }
+
+    @DeleteMapping("reaction/{reaction_type}")
+    public ResponseEntity<Void> delete(@PathVariable("reaction_type") String reactionType,
+                                        @RequestParam(name = "post_no", required = false) Long postNo,
+                                        @RequestParam(name = "reply_no", required = false) Long replyNo,
+                                        @RequestParam(name = "ins_user", required = false) String insUser){
+        System.out.println("reactionType = " + reactionType);
+        reactionService.delete(reactionType, postNo, replyNo, insUser);
+        return ResponseEntity.noContent().build();
+    }
+
 /*
 
     @GetMapping
