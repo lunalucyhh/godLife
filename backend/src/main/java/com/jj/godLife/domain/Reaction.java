@@ -18,15 +18,12 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "t_reaction")
 public class Reaction {
-    @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @JsonProperty("reaction_no")
-    private Long reactionNo;
+    @Id
+    @JsonProperty("reaction_type")
+    private String reactionType;
 
     @JsonProperty("reaction_title")
     private String reactionTitle;
-
-    @JsonProperty("reaction_type")
-    private String reactionType;
 
     @JsonProperty("ins_timestamp")
     private ZonedDateTime insTimestamp;

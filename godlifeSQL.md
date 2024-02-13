@@ -51,7 +51,6 @@ CREATE TABLE godlife.t_reaction_mapping (
     reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
     post_no BIGINT UNSIGNED NULL COMMENT '게시글 번호',
     reply_no BIGINT UNSIGNED NULL COMMENT '댓글 번호',
-    reaction_writer VARCHAR(50) NOT NULL COMMENT '반응 작성자',
     ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '작성 시간',
     ins_user VARCHAR(50) NOT NULL COMMENT '작성자',
     del_timestamp TIMESTAMP NULL COMMENT '삭제 시간',
@@ -90,9 +89,19 @@ ALTER TABLE t_reply ADD COLUMN post_no BIGINT AFTER reply_no;
 
 ----
 /** 24.02.04 ERD 변경사항 **/
-t_reaction 테이블의 PK 인 reaction_no BIGINT 를 reaction_type CHAR(1) 로 변경. 
--> t_reaction_mapping 과 t_reaction 테이블을 삭제하고 다시 만들어 주세요.
--> 기본 반응 종류 Inser 쿼리를 다시 실행해 주세요. 
+1. t_reaction 테이블의 PK 인 reaction_no BIGINT 를 reaction_type CHAR(1) 로 변경. 
+    -> t_reaction_mapping 과 t_reaction 테이블을 삭제하고 다시 만들어 주세요.
+    -> 기본 반응 종류 Inser 쿼리를 다시 실행해 주세요. 
 
 DROP TABLE godlife.t_reaction_mapping;
 DROP TABLE godlife.t_reaction;
+
+
+2. t_reaction_mapping 의 PK를 mapping_no -> reaction_type, post_no, reply_no, ins_user 로 변경하고 mapping_no 는 삭제함.
+    -> t_reaction_mapping 테이블을 drop 하고 다시 생성해주던가, drop 하고 싶지 않다면 아래의 쿼리 실행
+ALTER TABLE t_reaction_mapping CHANGE mapping_no mapping_no BIGINT unsigned;
+ALTER TABLE t_reaction_mapping DROP PRIMARY KEY;
+ALTER TABLE t_reaction_mapping ADD PRIMARY KEY (reaction_type, post_no, reply_no, ins_user);
+ALTER TABLE t_reaction_mapping DROP COLUMN mapping_no;
+
+```

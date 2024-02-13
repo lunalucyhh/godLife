@@ -29,10 +29,7 @@ public class ReplyController {
         
         List<ReplyResponse> readReply = replyService.readReply(postNo, page, limit, sort);
         return ResponseEntity.ok().body(readReply);
-    }
-
-      
- 
+    } 
 
     @PostMapping
     public ResponseEntity<Reply> create(@RequestBody CreateReplyRequest request){
