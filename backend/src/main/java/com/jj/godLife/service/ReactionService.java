@@ -90,6 +90,9 @@ public class ReactionService {
             if (mapping == null) {
                throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build();
             }
+            if (mapping.getDelTimestamp() != null){
+                throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_DUPLICATE_REQUEST).build();
+            }
         }
 
         if (replyNo != null) {
@@ -97,6 +100,9 @@ public class ReactionService {
             if (mapping == null) {
                 throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build();
              }
+            if (mapping.getDelTimestamp() != null){
+                throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_DUPLICATE_REQUEST).build();
+            }
         }
 
         // delete 
