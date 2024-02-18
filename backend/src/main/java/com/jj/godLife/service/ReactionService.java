@@ -50,7 +50,8 @@ public class ReactionService {
 
     @Transactional
     public ReactionMapping create(CreateReactionRequest request) {
-       
+        
+        
         ReactionMapping newReaction = new ReactionMapping();
         System.out.println(request);
         newReaction.setReactionType(request.getReactionType());
@@ -59,6 +60,22 @@ public class ReactionService {
         newReaction.setInsTimestamp(ZonedDateTime.now());
         newReaction.setInsUser(request.getInsUser());
         
+        ReactionMapping mapping = null;
+		if (request.getPostNo() != null) {
+            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndPostNo(request.getReactionType(), request.getInsUser(), request.getPostNo());
+            if (mapping != null){
+                throw CustomException.builder().errorCode(ErrorCode.BAD_POST_REACTION_RQUEST).build();        
+            }
+        };
+        
+
+        if (request.getReplyNo() != null) {
+            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndReplyNo(request.getReactionType(), request.getInsUser(), request.getReplyNo());
+            if (mapping != null){
+                throw CustomException.builder().errorCode(ErrorCode.BAD_POST_REACTION_RQUEST).build();        
+            }
+        }
+
         reactionMappingRepository.save(newReaction);
 
         return newReaction;
@@ -66,28 +83,27 @@ public class ReactionService {
 
     @Transactional
     public void delete(String reactionType, Long postNo, Long replyNo, String insUser){
-        ReactionMappingID reactionMappingID = new ReactionMappingID();
-        reactionMappingID.setReactionType(reactionType);
-        reactionMappingID.setPostNo(postNo);
-        reactionMappingID.setReplyNo(replyNo);
-        reactionMappingID.setInsUser(insUser);
-        System.out.println(reactionMappingID);
-        
+    
         ReactionMapping mapping = null;
 		if (postNo != null) {
-            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndPostNo(reactionType, insUser, postNo).orElseThrow(() -> CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build());
+            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndPostNo(reactionType, insUser, postNo);
+            if (mapping == null) {
+               throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build();
+            }
         }
 
         if (replyNo != null) {
-            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndReplyNo(reactionType, insUser, replyNo).orElseThrow(() -> CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build());    
+            mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndReplyNo(reactionType, insUser, replyNo);
+            if (mapping == null) {
+                throw CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build();
+             }
         }
 
         // delete 
         mapping.setDelTimestamp(ZonedDateTime.now());
         reactionMappingRepository.save(mapping);
         
-        // System.out.println(reactionMappingRepository.findById(reactionMappingID).get());
-        // deleteReaction.setDelTimestamp(ZonedDateTime.now());
+    
     }
 
     

@@ -9,7 +9,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
     BAD_DELETE_REACTION_REQUEST(HttpStatus.BAD_REQUEST, "존재하지 않는 반응입니다."),
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error"),
+    BAD_POST_REACTION_RQUEST(HttpStatus.BAD_REQUEST, "이미 작성된 반응입니다.");
 
     private final HttpStatus httpStatus;
     private final String errorMessage;

@@ -12,7 +12,7 @@ import com.jj.godLife.domain.ReactionMapping;
 @Repository
 public interface ReactionMappingRepository extends JpaRepository<ReactionMapping, Long>{
     
-    Optional<ReactionMapping> findByReactionTypeAndInsUserAndPostNo(@Param("reactionType") String reactionType, @Param("insUser")String insUser, @Param("postNo")Long postNo);
+    ReactionMapping findByReactionTypeAndInsUserAndPostNo(@Param("reactionType") String reactionType, @Param("insUser")String insUser, @Param("postNo")Long postNo);
 
-    Optional<ReactionMapping> findByReactionTypeAndInsUserAndReplyNo(String reactionType, String insUser, Long replyNo);
+    ReactionMapping findByReactionTypeAndInsUserAndReplyNo(String reactionType, String insUser, Long replyNo);
 }
