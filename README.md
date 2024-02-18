@@ -14,7 +14,7 @@
 5. Spring Boot 구동 성공  
 
 ## ERD
-![God Life ERD](/images/godLife.erd.240204.png)
+![God Life ERD](/images/godLife.erd.240218.png)
 
 
 ## API 명세서
@@ -244,6 +244,7 @@ response
 201 Created
 // 예시1. 게시글에 대한 반응
 {
+    "mapping_no": 2,
     "post_no": 3,
     "reply_no": null,
     "reaction_type": "L",
@@ -252,6 +253,7 @@ response
 // 예시2. 댓글에 대한 반응
 
 {
+    "mapping_no": 3,
     "post_no": null,
     "reply_no": 3,
     "reaction_type": "L",
