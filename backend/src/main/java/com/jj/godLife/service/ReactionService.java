@@ -2,6 +2,7 @@ package com.jj.godLife.service;
 
 import com.jj.godLife.constant.ErrorCode;
 import com.jj.godLife.controller.request.CreateReactionRequest;
+import com.jj.godLife.controller.response.PostNoReactionResponse;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
 import com.jj.godLife.domain.ReactionMapping;
@@ -111,9 +112,27 @@ public class ReactionService {
         
     
     }
+    
+    public PostNoReactionResponse getReaction(Long postNo){
+        ReactionMapping getReactions = reactionMappingRepository.findById(postNo).get();
+        PostNoReactionResponse postReactions = new PostNoReactionResponse();
+        postReactions.setReactiontionType(getReactions.set);
+
+
+        return postReactions;
+    }
+
 
     
 
  /*
+ Post readDetail = postRepository.findById(postNo).get();
+        PostDetailResponse detail = new PostDetailResponse();
+        detail.setPostTitle(readDetail.getPostTitle());
+        detail.setPostContents(readDetail.getPostContents());
+        detail.setPostWriter(readDetail.getPostWriter());
+        detail.setInsTimestamp(readDetail.getInsTimestamp());
+
+        return detail;
  */
 }
