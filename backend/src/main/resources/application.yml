@@ -4,7 +4,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/godlife?serberTimezone=UTC
+    url: jdbc:mariadb://localhost:3306/godlife?serverTimezone=UTC
     username: godlife-api
     password: apiPW
     driver-class-name: org.mariadb.jdbc.Driver

@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,23 +23,21 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "t_reaction_mapping")
-@IdClass(ReactionMappingID.class)
 public class ReactionMapping implements Serializable {
     
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("mapping_no")
+	private Long mapping_no;
 
-    @Id 
     @JsonProperty("reaction_type")
-    private String reactionType;
-
-    @Id
+	private String reactionType;
+	
     @JsonProperty("post_no")
     private Long postNo;
 
-    @Id
     @JsonProperty("reply_no")
     private Long replyNo;
 
-    @Id
     @JsonProperty("ins_user")
     private String insUser;
     

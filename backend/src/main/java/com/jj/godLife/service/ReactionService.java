@@ -74,7 +74,7 @@ public class ReactionService {
         System.out.println(reactionMappingID);
         
         ReactionMapping mapping = null;
-        if (postNo != null) {
+		if (postNo != null) {
             mapping = reactionMappingRepository.findByReactionTypeAndInsUserAndPostNo(reactionType, insUser, postNo).orElseThrow(() -> CustomException.builder().errorCode(ErrorCode.BAD_DELETE_REACTION_REQUEST).build());
         }
 
