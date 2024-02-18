@@ -47,6 +47,7 @@ CREATE TABLE godlife.t_reply (
 );
 
 CREATE TABLE godlife.t_reaction_mapping (
+    mapping_no BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL COMMENT '리액션맵핑 번호',
     reaction_type CHAR(1) NOT NULL COMMENT '반응 타입',
     post_no BIGINT UNSIGNED NULL COMMENT '게시글 번호',
     reply_no BIGINT UNSIGNED NULL COMMENT '댓글 번호',
@@ -58,7 +59,6 @@ CREATE TABLE godlife.t_reaction_mapping (
     FOREIGN KEY (post_no) REFERENCES t_post(post_no) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (reply_no) REFERENCES t_reply(reply_no) ON UPDATE CASCADE ON DELETE RESTRICT
 );
-ALTER TABLE t_reaction_mapping ADD PRIMARY KEY (reaction_type, post_no, reply_no, ins_user);
 
 
 SHOW TABLES;
