@@ -6,7 +6,6 @@ import com.jj.godLife.controller.response.PostNoReactionResponse;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
 import com.jj.godLife.domain.ReactionMapping;
-import com.jj.godLife.domain.ReactionMappingID;
 import com.jj.godLife.exception.CustomException;
 import com.jj.godLife.repository.ReactionMappingRepository;
 import com.jj.godLife.repository.ReactionRepository;
@@ -113,26 +112,49 @@ public class ReactionService {
     
     }
     
-    public PostNoReactionResponse getReaction(Long postNo){
-        ReactionMapping getReactions = reactionMappingRepository.findById(postNo).get();
-        PostNoReactionResponse postReactions = new PostNoReactionResponse();
-        postReactions.setReactiontionType(getReactions.set);
+    public List<PostNoReactionResponse> readReactions(Long postNo){
+        List<Reaction> findReactions = reactionRepository.findAll();
+        List<PostNoReactionResponse> postNoReactionResponse = new ArrayList<>();
+        for (Reaction findReaction : findReactions) {
+            PostNoReactionResponse reaction = new PostNoReactionResponse();
+            reaction.setReactionType(findReaction.getReactionType());
+            reaction.setTotalCount(reactionMappingRepository.getCountByReactionTypeLikePostNo(postNo, findReaction.getReactionType()));
+            postNoReactionResponse.add(reaction);
+        }
 
 
-        return postReactions;
+        return postNoReactionResponse;
+
     }
 
 
+}
     
 
  /*
- Post readDetail = postRepository.findById(postNo).get();
-        PostDetailResponse detail = new PostDetailResponse();
-        detail.setPostTitle(readDetail.getPostTitle());
-        detail.setPostContents(readDetail.getPostContents());
-        detail.setPostWriter(readDetail.getPostWriter());
-        detail.setInsTimestamp(readDetail.getInsTimestamp());
+   public List<ReactionTypeResponse> findReactions() {
 
-        return detail;
+        List<Reaction> findReactions = reactionRepository.findAll();
+        List<ReactionTypeResponse> reactionTypeResponse = new ArrayList();
+
+        for (Reaction reaction : findReactions){
+            ReactionTypeResponse type = new ReactionTypeResponse();
+            type.setReactionType(reaction.getReactionType());
+            type.setReactionTitle(reaction.getReactionTitle());
+            reactionTypeResponse.add(type);
+        }
+
+        return reactionTypeResponse;
+    }
+    List<ReactionMapping> readReactions = reactionMappingRepository.findAll();
+        List<PostNoReactionResponse> postNoReactionResponse = new ArrayList<>();
+
+        for (ReactionMapping reactionMapping: readReactions) {
+            PostNoReactionResponse reaction = new PostNoReactionResponse();
+            reaction.setReactionType(reactionMapping.getReactionType());
+            reaction.setTotalCount(reactionMappingRepository.getCountByReactionType(postNo, reactionMapping.getReactionType()));
+            postNoReactionResponse.add(reaction);
+        }
+
  */
-}
+

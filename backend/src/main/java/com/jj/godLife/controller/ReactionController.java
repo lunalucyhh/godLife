@@ -1,6 +1,7 @@
 package com.jj.godLife.controller;
 
 import com.jj.godLife.controller.request.CreateReactionRequest;
+import com.jj.godLife.controller.response.PostNoReactionResponse;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
 import com.jj.godLife.domain.ReactionMapping;
@@ -49,15 +50,17 @@ public class ReactionController {
         return ResponseEntity.noContent().build();
     }
 
-/*
 
-    @GetMapping
-    public ResponseEntity<ReactionResponse> readReaction(@PathVariable("post_no") Long PostNo,
-                                                            @RequestBody
-                                                         ){
 
+    @GetMapping("/post/{post_no}/reaction")
+    public ResponseEntity<List<PostNoReactionResponse>> readPostNoReaction(@PathVariable("post_no") Long postNo){
+
+        List<PostNoReactionResponse> readReaction = reactionService.readReactions(postNo);
+
+        return ResponseEntity.ok().body(readReaction);
     }
-   
+
+    /*
 
     @DeleteMapping("/{reaction_no")
     public ResponseEntity<Reaction> delete(@PathVariable("post_no"),

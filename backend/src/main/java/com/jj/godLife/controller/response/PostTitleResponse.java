@@ -16,4 +16,5 @@ public class PostTitleResponse {
 
     @JsonProperty("ins_timestamp")
     private ZonedDateTime insTimestamp;
+
 }
