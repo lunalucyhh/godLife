@@ -51,17 +51,17 @@ public class ReactionController {
     }
 
 
+    @GetMapping("post/{post_no}/reaction")
+    public ResponseEntity<List<PostNoReactionResponse>> readReaction(@PathVariable("post_no") Long PostNo){
+            
+        List<PostNoReactionResponse> getReaction = reactionService.readReactions(PostNo);
 
-    @GetMapping("/post/{post_no}/reaction")
-    public ResponseEntity<List<PostNoReactionResponse>> readPostNoReaction(@PathVariable("post_no") Long postNo){
+        return ResponseEntity.ok().body(getReaction);
 
-        List<PostNoReactionResponse> readReaction = reactionService.readReactions(postNo);
-
-        return ResponseEntity.ok().body(readReaction);
     }
+   
 
-    /*
-
+/*
     @DeleteMapping("/{reaction_no")
     public ResponseEntity<Reaction> delete(@PathVariable("post_no"),
                                             @PathVariable("reaction_no"),
