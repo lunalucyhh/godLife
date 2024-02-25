@@ -14,7 +14,7 @@
 5. Spring Boot 구동 성공  
 
 ## ERD
-![God Life ERD](/images/godLife.erd.240218.png)
+![God Life ERD](/images/godLife.erd.240225.png)
 
 
 ## API 명세서
