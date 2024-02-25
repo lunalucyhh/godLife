@@ -5,6 +5,7 @@ import com.jj.godLife.controller.request.CreateReactionRequest;
 import com.jj.godLife.controller.response.PostNoReactionResponse;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
+import com.jj.godLife.domain.ReactionCount;
 import com.jj.godLife.domain.ReactionMapping;
 import com.jj.godLife.exception.CustomException;
 import com.jj.godLife.repository.ReactionMappingRepository;
@@ -19,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service
@@ -127,6 +130,25 @@ public class ReactionService {
 
     }
 
+	/**
+	 * [참고용 코드] Projecion 방법을 통해 Group By 절로 reaction_type 별 count 조회
+	 * 
+	 * public List<PostNoReactionResponse> readReactionsByProjection(Long postNo) {
+	 * List<ReactionCount> reactionCountList =
+	 * reactionMappingRepository.countByPostNoGroupByReactionType(postNo);
+	 * return
+	 * reactionCountList.stream().map(this::convertReactionCountResponse).collect(Collectors.toList());
+	 * }
+	 * 
+	 * private PostNoReactionResponse convertReactionCountResponse(ReactionCount
+	 * reactionCount) {
+	 * PostNoReactionResponse postNoReactionResponse = new PostNoReactionResponse();
+	 * postNoReactionResponse.setReactionType(reactionCount.getReactionType());
+	 * postNoReactionResponse.setTotalCount(reactionCount.getCount());
+	 * return postNoReactionResponse;
+	 * 
+	 * }
+	 */
 
 }
     
