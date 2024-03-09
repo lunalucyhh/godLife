@@ -104,7 +104,7 @@ ALTER TABLE t_reaction_mapping DROP PRIMARY KEY;
 ALTER TABLE t_reaction_mapping ADD PRIMARY KEY (reaction_type, post_no, reply_no, ins_user);
 ALTER TABLE t_reaction_mapping DROP COLUMN mapping_no;
 
-```
+
 
 /** 24.03.09 user 관련 테이블 sql문 추가 **/
 USE godlife;
@@ -192,3 +192,4 @@ CREATE TABLE godLife.t_member_board(
 	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY (board_no) REFERENCES t_board(board_no); ON UPDATE CASCADE ON DELETE RESTRICT 
 );
+```
