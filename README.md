@@ -298,3 +298,46 @@ response
     }
 ]
 ```
+
+
+#### 14. 회원가입 - create (2024.03.09 추가)
+request
+```
+POST:/api/register/local
+```
+response
+```
+
+```
+
+
+#### 15. 로그인 - create
+request
+```
+POST:/api/login/local
+```
+response
+```
+
+```
+
+
+#### 16. 이메일/아이디 중복확인 - read
+request
+```
+GET:/api/exists/:key:/value
+```
+response
+```
+
+```
+
+#### 17. 로그아웃 - create
+request
+```
+POST:/logout
+```
+response
+```
+
+```
