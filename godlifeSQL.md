@@ -111,85 +111,85 @@ USE godlife;
 
 SELECT default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA 
 WHERE schema_name = "godlife";
-
 CREATE TABLE godlife.t_member_user (
-	user_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '회원 번호',
-	user_name VARCHAR(50) NOT NULL COMMENT '회원 이름',
-	login_type TINYINT unsigned NOT NULL DEFAULT 0 COMMENT '접속 종류',
+   user_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '회원 번호',
+   user_name VARCHAR(50) NOT NULL COMMENT '회원 이름',
+   login_type TINYINT unsigned NOT NULL DEFAULT 0 COMMENT '접속 종류',
    ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '가입 시간',
-	upd_timestamp TIMESTAMP NULL COMMENT '변경 시간'
+   upd_timestamp TIMESTAMP NULL COMMENT '변경 시간'
 );
 
 CREATE TABLE godlife.t_member_authentification (
-	authentification_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별값',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-	gather_agree TINYINT UNSIGNED NULL COMMENT '개인정보 수집동의',
-	cell_phone VARCHAR(50) NULL UNIQUE COMMENT '핸드폰 번호',
- 	email VARCHAR(50) NULL UNIQUE COMMENT '이메일',
-	birthday VARCHAR(50) NULL COMMENT '생년월일',
-	sex TINYINT UNSIGNED NULL COMMENT '성별',
-	auth_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '본인 인증 시간',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
+   authentification_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별값',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
+   gather_agree TINYINT UNSIGNED NULL DEFAULT 0 COMMENT '개인정보 수집동의',
+   cell_phone VARCHAR(50) NULL UNIQUE COMMENT '핸드폰 번호',
+   email VARCHAR(50) NULL UNIQUE COMMENT '이메일',
+   birthday VARCHAR(50) NULL COMMENT '생년월일',
+   sex TINYINT UNSIGNED NULL COMMENT '성별',
+   auth_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '본인 인증 시간',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
 );
 
 
 CREATE TABLE godlife.t_auth_cidi (
-	cidi_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별값',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',
-	ci VARCHAR(88) NOT NULL UNIQUE COMMENT 'ci',
-	di VARCHAR(64) NOT NULL UNIQUE COMMENT 'di', 
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
+   cidi_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별값',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',
+   ci VARCHAR(88) NOT NULL UNIQUE COMMENT 'ci',
+   di VARCHAR(64) NOT NULL UNIQUE COMMENT 'di', 
+  FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
 );
 
 
 CREATE TABLE godlife.t_auth_social_login (
-	social_login_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별 값',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-	social_code TINYINT UNSIGNED NOT NULL COMMENT '소셜 연동처',
-	external_id VARCHAR(64) NOT NULL COMMENT '외부 아이디',
-	access_token VARCHAR(256) NOT NULL COMMENT '접속 토큰',
-	upd_timestamp TIMESTAMP NOT NULL COMMENT '갱신 시간',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
+   social_login_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유 식별 값',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
+   social_code TINYINT UNSIGNED NOT NULL COMMENT '소셜 연동처',
+   external_id VARCHAR(64) NOT NULL COMMENT '외부 아이디',
+   access_token VARCHAR(256) NOT NULL COMMENT '접속 토큰',
+   upd_timestamp TIMESTAMP NOT NULL COMMENT '갱신 시간',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
 );
 
 
 CREATE TABLE godlife.t_auth_password (
-	password_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT ,
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-	salt VARCHAR(128) NOT NULL COMMENT 'hash 값',
-	PASSWORD VARCHAR(128) NOT NULL COMMENT '암호화',
-	upd_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '변경 시간',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
+   password_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT ,
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
+   salt VARCHAR(256) NOT NULL COMMENT 'hash 값',
+   PASSWORD VARCHAR(128) NOT NULL COMMENT '암호화',
+   upd_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '변경 시간',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
 );
 
 CREATE TABLE godlife.t_royalty_history (
-	history_id BIGINT UNSIGNED NOT NULL COMMENT '기록 번호',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',
-	inc_royalty BIGINT NOT NULL COMMENT '로열티 증감',
-	ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '기록 시간',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
+   history_id BIGINT UNSIGNED NOT NULL COMMENT '기록 번호',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',
+   inc_royalty BIGINT NOT NULL COMMENT '로열티 증감',
+   ins_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '기록 시간',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE restrict
 );
 
 CREATE TABLE godlife.t_grade (
-	grade_no TINYINT UNSIGNED NOT NULL COMMENT '등급 번호',
-	garde_name VARCHAR(50) NOT NULL COMMENT '등급 이름'
+   grade_no TINYINT UNSIGNED NOT NULL COMMENT '등급 번호',
+   grade_name VARCHAR(50) NOT NULL COMMENT '등급 이름'
 );
 
 CREATE TABLE godlife.t_royalty_mapping (
-	mapping_no BIGINT UNSIGNED NOT NULL COMMENT '매핑 번호',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-	royaty_total BIGINT NOT NULL DEFAULT 0 COMMENT '충성 금액',
-	upd_timestamp TIMESTAMP COMMENT'수정 시간',
-	grade_no BIGINT UNSIGNED NOT NULL COMMENT '등급 번호',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,	
-	FOREIGN KEY (grade_no) REFERENCES t_grade(grade_no) ON UPDATE CASCADE ON DELETE RESTRICT 
+   mapping_no BIGINT UNSIGNED NOT NULL COMMENT '매핑 번호',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
+   royaty_total BIGINT NOT NULL DEFAULT 0 COMMENT '충성도',
+   upd_timestamp TIMESTAMP COMMENT'수정 시간',
+   grade_no BIGINT UNSIGNED NOT NULL COMMENT '등급 번호',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,	
+   FOREIGN KEY (grade_no) REFERENCES t_grade(grade_no) ON UPDATE CASCADE ON DELETE RESTRICT 
 );
 
 CREATE TABLE godLife.t_member_board(
-	choice_board BIGINT UNSIGNED NOT NULL COMMENT '게시판 선택',
-	user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-	board_no BIGINT UNSIGNED NOT NULL commnet '게시판 번호',
-	FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY (board_no) REFERENCES t_board(board_no); ON UPDATE CASCADE ON DELETE RESTRICT 
+   choice_board BIGINT UNSIGNED NOT NULL COMMENT '게시판 선택',
+   user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
+   board_no BIGINT UNSIGNED NOT NULL commnet '게시판 번호',
+   FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,
+   FOREIGN KEY (board_no) REFERENCES t_board(board_no) ON UPDATE CASCADE ON DELETE RESTRICT 
 );
+
 ```
