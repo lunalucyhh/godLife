@@ -1,9 +1,7 @@
 import React from "react";
+
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import PostList from "../components/List/PostList";
-import Button from "../ui/Button"
-
 const Wrapper = styled.div`
     padding: 16px;
     width: calc(100% - 32px);
@@ -26,15 +24,11 @@ const Container = styled.div`
 
 `;
 
-function MainPage(props) {
-    const {} = props;
-
-    const navigate= useNavigate();
+function MainPage() {
 
     return(
         <Wrapper>
-            
-            <MainTitleText>갓생살기</MainTitleText>
+                <p>갓생 살기</p>
             <Container>
                 <p>당신의 순간을 응원합니다</p>    
             </Container>
