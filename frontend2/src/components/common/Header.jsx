@@ -11,7 +11,7 @@ const header = styled.div`
 
 
 function Header(){
-    return 
+    return (
       <header>
         <h2>갓생살기</h2>
           <nav>
@@ -24,6 +24,7 @@ function Header(){
             </ul>
           </nav>
       </header>
+      )
   }
   
   export default Header;
