@@ -1,25 +1,16 @@
-//import './App.css';
-//import { useState } from 'react';
-
-//import styled from 'styled-components';
-//Pages
 import './App.css';
-import {useState} from 'react';
-import TextInput from './components/ui/TextInput';
+import { useState } from 'react';
+
+import styled from 'styled-components';
+//Pages
+
+
 
 function Article(props){
   return <article>
     <h2>{props.title}</h2>
     {props.body}
   </article>
-}
-function Header(props){
-  return <header>
-    <h1><a href="/" onClick={(event)=>{
-      event.preventDefault();
-      props.onChangeMode();
-    }}>{props.title}</a></h1>
-  </header>
 }
 function Nav(props){
   const lis = []
@@ -148,26 +139,16 @@ function App() {
   }
 
   return (
-    <div>
-      <Header title="WEB" onChangeMode={()=>{
-        setMode('WELCOME');
-      }}></Header>
-      <Nav topics={topics} onChangeMode={(_id)=>{
-        setMode('READ');
-        setId(_id);
-      }}></Nav>
-      {content}
-      <ul>
-      <li>
-      <a href="/create" onClick={event=>{
-        event.preventDefault();
-        setMode('CREATE');
-      }}>Create</a></li>
-      {contextControl}
 
-      </ul>
-    </div>
-  );
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Main/ >} />
+          <Route path="post-write" element={<PostwritePage />} />
+          <Route path="post/:postId" element={<PostViewPage />} />
+        </Routes>
+      </BrowserRouter>
+
+      );
 }
 
 export default App;

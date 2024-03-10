@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CommentList from "../components/List/CommentList";
-import TextInput from "../components/ui/TextInput";
-import Button from "../components/ui/Button";
+import TextInput from "../../ui/TextInput";
+import Button from "../../ui/Button";
 
 const Wrapper = styled.div`
     padding: 16px;
