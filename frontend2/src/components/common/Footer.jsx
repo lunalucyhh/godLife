@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 function Footer(props){
 
-    return (
+    return 
       <footer>
         <h2>갓생살기</h2>
           <nav>
@@ -17,7 +17,6 @@ function Footer(props){
             
           </nav>
       </footer>
-      )
   }
   
   export default Footer;
