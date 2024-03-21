@@ -12,10 +12,14 @@ const header = styled.div`
 
 function Header(){
 <<<<<<< HEAD
+<<<<<<< HEAD
     return 
 =======
     return (
 >>>>>>> eaa8d09 (프론트 엔드 페이지 만들기)
+=======
+    return (
+>>>>>>> im
       <header>
         <h2>갓생살기</h2>
           <nav>
@@ -29,9 +33,13 @@ function Header(){
           </nav>
       </header>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       )
 >>>>>>> eaa8d09 (프론트 엔드 페이지 만들기)
+=======
+      )
+>>>>>>> im
   }
   
   export default Header;
