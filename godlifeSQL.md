@@ -177,7 +177,7 @@ CREATE TABLE godlife.t_grade (
 CREATE TABLE godlife.t_royalty_mapping (
    mapping_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '매핑 번호',
    user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',  
-   royaty_total BIGINT NOT NULL DEFAULT 0 COMMENT '충성도',
+   royalty_total BIGINT NOT NULL DEFAULT 0 COMMENT '충성도',
    upd_timestamp TIMESTAMP COMMENT'수정 시간',
    grade_no TINYINT UNSIGNED NOT NULL COMMENT '등급 번호',
    FOREIGN KEY (user_no) REFERENCES t_member_user(user_no) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -202,4 +202,7 @@ SELECT * FROM t_royalty_history;
 SELECT * FROM t_royalty_mapping;
 SELECT * FROM t_member_board;
 
+
+/** 24.03.25 컬럼명 오타 수정 sql문 추가(생성 sql문도 수정함) **/
+ALTER TABLE t_royalty_mapping CHANGE royaty_total royalty_total BIGINT;
 ```
