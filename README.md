@@ -302,12 +302,22 @@ response
 
 #### 14. 회원가입 - create (2024.03.09 추가)
 request
-```
+```javascript
 POST:/api/register/local
+{
+    "user_name": "lunalucy001",
+    "password": "hash값",
+    "gather_agree": 1,
+    "cell_phone": "010-1232-1234",
+    "email": "lunalucy001@naver.com",
+    "birthday": "1999-12-31",
+    "sex": 2,
+    "board_no": 1
+}
 ```
 response
 ```
-
+201 Created
 ```
 
 
