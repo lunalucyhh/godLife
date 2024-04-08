@@ -1,6 +1,7 @@
 package com.jj.godLife.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,8 +11,27 @@ import lombok.ToString;
 @Setter
 public class CreateMemberRequest {
 
-    @JsonProperty("user_no")
-    private Long userNo;
+    @JsonProperty("user_name")
+    private String userName;
 
+    @JsonProperty("password")
+    private String password;
 
+    @JsonProperty("gather_agree")
+    private Long gatherAgree;
+
+    @JsonProperty("cell_phone")
+    private String cellPhone;
+
+    @JsonProperty("email")
+    private String email;
+
+    @JsonProperty("birthday")
+    private String birthday;
+
+    @JsonProperty("sex")
+    private Long sex;
+
+    @JsonProperty("board_no")
+    private String boardNo;
 }
