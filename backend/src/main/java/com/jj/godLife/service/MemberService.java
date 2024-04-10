@@ -1,13 +1,21 @@
 package com.jj.godLife.service;
 
 import com.jj.godLife.controller.request.CreateMemberRequest;
+import com.jj.godLife.domain.AuthCidi;
+import com.jj.godLife.domain.AuthPassword;
 import com.jj.godLife.domain.MemberAuthentification;
 import com.jj.godLife.domain.MemberUser;
+import com.jj.godLife.domain.RoyaltyHistory;
+import com.jj.godLife.domain.RoyaltyMapping;
 import com.jj.godLife.repository.AuthCidiRepository;
 import com.jj.godLife.repository.AuthPasswordRepository;
 import com.jj.godLife.repository.AuthSocialLoginRepository;
+import com.jj.godLife.repository.GradeRepository;
 import com.jj.godLife.repository.MemberAuthentificationRepository;
 import com.jj.godLife.repository.MemberUserRepository;
+import com.jj.godLife.repository.RoyaltyHistoryRepository;
+import com.jj.godLife.repository.RoyaltymappingRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +28,12 @@ import java.time.ZonedDateTime;
 public class MemberService {
     private final MemberUserRepository memberUserRepository;
     private final MemberAuthentificationRepository memberAuthentificationRepository;
-    private final AuthCidiRepository AUthcidi;
-    private final AuthSocialLoginRepository AuthSocialLogin;
-    private final AuthPasswordRepository authPassword;
-    private final 
+    private final AuthCidiRepository authCidiRepository;
+    private final AuthSocialLoginRepository authSocialLoginRepository;
+    private final AuthPasswordRepository authPasswordRepository;
+    private final GradeRepository gradeRepository;
+    private final RoyaltymappingRepository royaltymappingRepository;
+    private final RoyaltyHistoryRepository royaltyHistoryRepository;
 
     public MemberUser create(CreateMemberRequest request) {
         
@@ -34,15 +44,17 @@ public class MemberService {
         newUser.setInsTimestamp(ZonedDateTime.now());
 
         memberUserRepository.save(newUser);
-
-    
+        memberCreate(request);
+        passwordCreate(request);
+        cidiCreate(request);
+        royaltyCreate();
         return newUser;
     }
 
     public MemberAuthentification memberCreate(CreateMemberRequest request) {
 
         MemberAuthentification newMember = new MemberAuthentification();
-        newMember.setUserNo(getUserNo());
+        
         newMember.setGatherAgree(request.getGatherAgree());
         newMember.setCellPhone(request.getCellPhone());
         newMember.setEmail(request.getEmail());
@@ -52,7 +64,46 @@ public class MemberService {
         memberAuthentificationRepository.save(newMember);
         return newMember;
     }
- 
-   
 
+    public AuthPassword passwordCreate(CreateMemberRequest request) {
+
+        AuthPassword newPassword = new AuthPassword();
+        newPassword.setUserPassword(request.getPassword());
+        // newPassword.setSalt();
+        newPassword.setUpdTimestamp(ZonedDateTime.now());
+
+        authPasswordRepository.save(newPassword);
+        return newPassword;
+    }
+
+    public AuthCidi cidiCreate(CreateMemberRequest request){
+        AuthCidi newCidi = new AuthCidi();
+        //newCidi.setCi(request.getCi);
+        //newCidi.setDi(request.getDi);
+        return newCidi;
+    }
+
+    public RoyaltyMapping royaltyCreate(){
+        RoyaltyMapping newRoyalty = new RoyaltyMapping();
+
+        newRoyalty.setRoyaltyTotal(0L);
+        newRoyalty.setUpdTimestamp(ZonedDateTime.now());
+
+        royaltymappingRepository.save(newRoyalty);
+        royaltyHistoryCreate();
+        gradeCreate();
+        return newRoyalty;
+    }
+
+    
+    public RoyaltyHistory royaltyHistoryCreate(){
+        RoyaltyHistory newHistory = new RoyaltyHistory();
+
+        newHistory.setIncreaseRoyalty(0L);
+        newHistory.setInsTimestamp(ZonedDateTime.now());
+        royaltyHistoryRepository.save(newHistory);
+        
+       return newHistory;
+    }
+    
 }
