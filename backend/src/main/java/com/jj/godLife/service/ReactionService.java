@@ -5,7 +5,6 @@ import com.jj.godLife.controller.request.CreateReactionRequest;
 import com.jj.godLife.controller.response.PostNoReactionResponse;
 import com.jj.godLife.controller.response.ReactionTypeResponse;
 import com.jj.godLife.domain.Reaction;
-import com.jj.godLife.domain.ReactionCount;
 import com.jj.godLife.domain.ReactionMapping;
 import com.jj.godLife.exception.CustomException;
 import com.jj.godLife.repository.ReactionMappingRepository;
@@ -20,8 +19,6 @@ import lombok.RequiredArgsConstructor;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service

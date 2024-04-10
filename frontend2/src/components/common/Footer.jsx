@@ -14,7 +14,6 @@ function Footer(props){
               <li>godLife갓생살기</li>
               <li>02-####-####</li>
             </ul>
-            
           </nav>
       </footer>
       )

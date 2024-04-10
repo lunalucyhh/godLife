@@ -14,6 +14,9 @@ public class CreateMemberRequest {
     @JsonProperty("user_name")
     private String userName;
 
+    @JsonProperty("login_type")
+    private Long loginType;    
+
     @JsonProperty("password")
     private String password;
 
