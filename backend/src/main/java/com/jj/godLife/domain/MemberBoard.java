@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "t_member_board")
 public class MemberBoard {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("choice_board")
-    private Long choiceBoard;
+    @JsonProperty("choice_board_no")
+    private Long choiceBoardNo;
 
     @JsonProperty("user_no")
     private Long userNo;

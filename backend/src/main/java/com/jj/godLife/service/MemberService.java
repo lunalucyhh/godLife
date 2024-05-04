@@ -3,7 +3,9 @@ package com.jj.godLife.service;
 import com.jj.godLife.controller.request.CreateMemberRequest;
 import com.jj.godLife.domain.AuthCidi;
 import com.jj.godLife.domain.AuthPassword;
+import com.jj.godLife.domain.Grade;
 import com.jj.godLife.domain.MemberAuthentification;
+import com.jj.godLife.domain.MemberBoard;
 import com.jj.godLife.domain.MemberUser;
 import com.jj.godLife.domain.RoyaltyHistory;
 import com.jj.godLife.domain.RoyaltyMapping;
@@ -12,6 +14,7 @@ import com.jj.godLife.repository.AuthPasswordRepository;
 import com.jj.godLife.repository.AuthSocialLoginRepository;
 import com.jj.godLife.repository.GradeRepository;
 import com.jj.godLife.repository.MemberAuthentificationRepository;
+import com.jj.godLife.repository.MemberBoardRepository;
 import com.jj.godLife.repository.MemberUserRepository;
 import com.jj.godLife.repository.RoyaltyHistoryRepository;
 import com.jj.godLife.repository.RoyaltymappingRepository;
@@ -31,6 +34,7 @@ public class MemberService {
     private final AuthCidiRepository authCidiRepository;
     private final AuthSocialLoginRepository authSocialLoginRepository;
     private final AuthPasswordRepository authPasswordRepository;
+    private final MemberBoardRepository memberBoardRepository;
     private final GradeRepository gradeRepository;
     private final RoyaltymappingRepository royaltymappingRepository;
     private final RoyaltyHistoryRepository royaltyHistoryRepository;
@@ -44,12 +48,16 @@ public class MemberService {
         newUser.setInsTimestamp(ZonedDateTime.now());
 
         memberUserRepository.save(newUser);
+        newUser.getUserNo();
         memberCreate(request);
         passwordCreate(request);
         cidiCreate(request);
+        choiceBoard(request);
         royaltyCreate();
         return newUser;
     }
+
+
 
     public MemberAuthentification memberCreate(CreateMemberRequest request) {
 
@@ -62,8 +70,10 @@ public class MemberService {
         newMember.setSex(request.getSex());
 
         memberAuthentificationRepository.save(newMember);
+
         return newMember;
     }
+
 
     public AuthPassword passwordCreate(CreateMemberRequest request) {
 
@@ -83,6 +93,15 @@ public class MemberService {
         return newCidi;
     }
 
+    private MemberBoard choiceBoard(CreateMemberRequest request) {
+\       MemberBoard newMemberBoard = new MemberBoard();
+        newMemberBoard.setUserNo(request.getUserNo());
+        newMemberBoard.setBoardNo(request.getBoardNo());
+        memberBoardRepository.save(newMemberBoard);
+
+        return newMemberBoard; 
+    }
+
     public RoyaltyMapping royaltyCreate(){
         RoyaltyMapping newRoyalty = new RoyaltyMapping();
 
@@ -91,7 +110,7 @@ public class MemberService {
 
         royaltymappingRepository.save(newRoyalty);
         royaltyHistoryCreate();
-        gradeCreate();
+        setMemberGrade();
         return newRoyalty;
     }
 
@@ -105,5 +124,17 @@ public class MemberService {
         
        return newHistory;
     }
+
+    public Grade setMemberGrade(){
+        Grade setDefaultGrade = new Grade();
+        
+        setDefaultGrade.setGradeNo(1L);
+        gradeRepository.save(setDefaultGrade);
+        return setDefaultGrade;
+    }
+
     
+
+    
+
 }

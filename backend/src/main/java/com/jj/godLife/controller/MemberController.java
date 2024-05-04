@@ -20,7 +20,8 @@ public class MemberController {
     @PostMapping("/api/register")
     public ResponseEntity<MemberUser> create(@RequestBody CreateMemberRequest request){
         System.out.println("request = " + request);
-        MemberUser createMemberUser = MemberService.create(request);
+        MemberUser createMemberUser = memberService.create(request);
+
         return ResponseEntity.ok().body(createMemberUser);
     }
 }
