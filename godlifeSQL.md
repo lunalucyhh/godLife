@@ -196,7 +196,7 @@ CREATE TABLE godlife.t_royalty_mapping (
     FOREIGN KEY (grade_no) REFERENCES t_grade(grade_no) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
-CREATE TABLE godLife.t_member_board(
+CREATE TABLE godlife.t_member_board(
     choice_board_no BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시판 선택',
     user_no BIGINT UNSIGNED NOT NULL COMMENT '회원 번호',
     board_no BIGINT UNSIGNED NOT NULL COMMENT '게시판 번호',
@@ -214,6 +214,16 @@ SELECT * FROM t_royalty_history;
 SELECT * FROM t_royalty_mapping;
 SELECT * FROM t_member_board;
 
+INSERT INTO t_grade (grade_name) VALUES ('Level1');
+INSERT INTO t_grade (grade_name) VALUES ('Level2');
+INSERT INTO t_grade (grade_name) VALUES ('Level3');
+INSERT INTO t_grade (grade_name) VALUES ('Level4');
+INSERT INTO t_grade (grade_name) VALUES ('Level5');
+INSERT INTO t_grade (grade_name) VALUES ('Level6');
+INSERT INTO t_grade (grade_name) VALUES ('Level7');
+INSERT INTO t_grade (grade_name) VALUES ('Level8');
+INSERT INTO t_grade (grade_name) VALUES ('Level9');
+INSERT INTO t_grade (grade_name) VALUES ('Level10');
 
 /** 24.03.25 컬럼명 오타 수정 sql문 추가(생성 sql문도 수정함) **/
 ALTER TABLE t_royalty_mapping CHANGE royaty_total royalty_total BIGINT;
