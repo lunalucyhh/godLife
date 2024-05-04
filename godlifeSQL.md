@@ -116,15 +116,15 @@ SELECT default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schem
 WHERE schema_name = "godlife";
 
 /** user 관련 테이블 drop SQL **/
-DROP TABLE godlift.t_member_user;
-DROP TABLE godlift.t_member_authentification;
-DROP TABLE godlift.t_auth_cidi;
-DROP TABLE godlift.t_auth_social_login;
-DROP TABLE godlift.t_auth_password;
-DROP TABLE godlift.t_royalty_history;
-DROP TABLE godlift.t_grade;
-DROP TABLE godlift.t_royalty_mapping;
-DROP TABLE godlift.t_member_board;
+DROP TABLE godlife.t_member_user;
+DROP TABLE godlife.t_member_authentification;
+DROP TABLE godlife.t_auth_cidi;
+DROP TABLE godlife.t_auth_social_login;
+DROP TABLE godlife.t_auth_password;
+DROP TABLE godlife.t_royalty_history;
+DROP TABLE godlife.t_grade;
+DROP TABLE godlife.t_royalty_mapping;
+DROP TABLE godlife.t_member_board;
 
 
 /** user 관련 테이블 create SQL **/
