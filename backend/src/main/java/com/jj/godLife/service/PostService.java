@@ -93,12 +93,4 @@ public class PostService {
         deleteContents.setDelTimestamp(ZonedDateTime.now());   
 
     }
-
-
-    
-
- 
-
-        
-
 }
