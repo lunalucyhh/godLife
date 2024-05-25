@@ -4,10 +4,13 @@ import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "t_member_user")
 public class MemberUser {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("user_no")
     private Long userNo;
@@ -37,4 +41,7 @@ public class MemberUser {
     @JsonProperty("upd_timestamp")
     private ZonedDateTime updTimestamp;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="userNo", referencedColumnName="id")
+    private MemberAuthentification memberAuthentification;
 }

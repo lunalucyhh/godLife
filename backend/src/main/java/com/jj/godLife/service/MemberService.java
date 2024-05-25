@@ -49,7 +49,7 @@ public class MemberService {
 
         memberUserRepository.save(newUser);
         request.setUserNo(newUser.getUserNo());
-        memberCreate(request);
+        memberCreate(request, newUser);
         passwordCreate(request);
         cidiCreate(request);
         choiceBoard(request);
@@ -57,7 +57,7 @@ public class MemberService {
         return newUser;
     }
 
-    public MemberAuthentification memberCreate(CreateMemberRequest request) {
+    public MemberAuthentification memberCreate(CreateMemberRequest request, MemberUser newUser) {
 
         MemberAuthentification newMember = new MemberAuthentification();
         
@@ -66,7 +66,7 @@ public class MemberService {
         newMember.setEmail(request.getEmail());
         newMember.setBirthday(request.getBirthday());
         newMember.setSex(request.getSex());
-        newMember.setUserNo(request.getUserNo());
+        newMember.setMemberUser(newUser);
 
         memberAuthentificationRepository.save(newMember);
 
@@ -127,7 +127,7 @@ public class MemberService {
     public Grade setMemberGrade(){
         Grade setDefaultGrade = new Grade();
         
-        setDefaultGrade.setGradeNo(1L);
+        setDefaultGrade.setGradeNo(1);
         gradeRepository.save(setDefaultGrade);
         return setDefaultGrade;
     }
