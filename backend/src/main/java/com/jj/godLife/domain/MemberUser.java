@@ -29,7 +29,7 @@ public class MemberUser {
     private String userName;
 
     @JsonProperty("login_type")
-    private Long loginType;
+    private Integer loginType;
 
     @JsonProperty("ins_timestamp")
     private ZonedDateTime insTimestamp;

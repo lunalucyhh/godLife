@@ -48,7 +48,7 @@ public class MemberService {
         newUser.setInsTimestamp(ZonedDateTime.now());
 
         memberUserRepository.save(newUser);
-        newUser.getUserNo();
+        request.setUserNo(newUser.getUserNo());
         memberCreate(request);
         passwordCreate(request);
         cidiCreate(request);
@@ -56,8 +56,6 @@ public class MemberService {
         royaltyCreate();
         return newUser;
     }
-
-
 
     public MemberAuthentification memberCreate(CreateMemberRequest request) {
 
@@ -68,6 +66,7 @@ public class MemberService {
         newMember.setEmail(request.getEmail());
         newMember.setBirthday(request.getBirthday());
         newMember.setSex(request.getSex());
+        newMember.setUserNo(request.getUserNo());
 
         memberAuthentificationRepository.save(newMember);
 
@@ -94,7 +93,7 @@ public class MemberService {
     }
 
     private MemberBoard choiceBoard(CreateMemberRequest request) {
-\       MemberBoard newMemberBoard = new MemberBoard();
+        MemberBoard newMemberBoard = new MemberBoard();
         newMemberBoard.setUserNo(request.getUserNo());
         newMemberBoard.setBoardNo(request.getBoardNo());
         memberBoardRepository.save(newMemberBoard);
@@ -132,9 +131,4 @@ public class MemberService {
         gradeRepository.save(setDefaultGrade);
         return setDefaultGrade;
     }
-
-    
-
-    
-
 }

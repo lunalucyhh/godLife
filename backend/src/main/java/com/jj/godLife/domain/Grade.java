@@ -22,7 +22,7 @@ public class Grade {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("grade_no")
-    private Long gradeNo;
+    private Integer gradeNo;
 
     @JsonProperty("grade_name")
     private String gradeName;

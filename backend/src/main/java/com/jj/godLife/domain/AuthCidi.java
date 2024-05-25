@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "t_auth_cidi")
 public class AuthCidi {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("cidi_id")
-    private Long cidiId;
+    @JsonProperty("cidi_no")
+    private Long cidiNo;
 
     @JsonProperty("user_no")
     private Long userNo;

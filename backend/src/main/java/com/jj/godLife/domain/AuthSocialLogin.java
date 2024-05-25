@@ -22,14 +22,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "t_auth_social_login")
 public class AuthSocialLogin {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("social_login_id")
-    private Long socialLoginId;
+    @JsonProperty("social_login_no")
+    private Long socialLoginNo;
 
     @JsonProperty("user_no")
     private Long userNo;
 
     @JsonProperty("social_code")
-    private Long socialCode;
+    private Integer socialCode;
 
     @JsonProperty("external_id")
     private String externalId;

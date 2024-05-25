@@ -22,10 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "t_auth_password")
 public class AuthPassword {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("password_id")
-    private Long passwordId;
-
+    @Id
     @JsonProperty("user_no")
     private Long userNo;
 

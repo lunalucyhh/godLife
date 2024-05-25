@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "t_royalty_history")
 public class RoyaltyHistory {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @JsonProperty("history_id")
-   private Long historyId;
+   @JsonProperty("history_no")
+   private Long historyNo;
 
    @JsonProperty("user_no")
    private Long userNo;

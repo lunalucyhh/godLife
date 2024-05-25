@@ -21,15 +21,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "t_member_authentification")
 public class MemberAuthentification {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("authentification_id")
-    private Long authentificationId;
-    
+    @Id 
     @JsonProperty("user_no")
     private Long userNo;
 
     @JsonProperty("gather_agree")
-    private Long gatherAgree;
+    private Integer gatherAgree;
 
     @JsonProperty("cell_phone")
     private String cellPhone;
@@ -41,7 +38,7 @@ public class MemberAuthentification {
     private String birthday;
 
     @JsonProperty("sex")
-    private Long sex;
+    private Integer sex;
 
     @JsonProperty("auth_timestamp")
     private ZonedDateTime authTimestamp;

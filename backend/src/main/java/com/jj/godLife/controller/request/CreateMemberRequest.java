@@ -16,13 +16,13 @@ public class CreateMemberRequest {
     private String userName;
 
     @JsonProperty("login_type")
-    private Long loginType;    
+    private Integer loginType;    
 
     @JsonProperty("password")
     private String password;
 
     @JsonProperty("gather_agree")
-    private Long gatherAgree;
+    private Integer gatherAgree;
 
     @JsonProperty("cell_phone")
     private String cellPhone;
@@ -34,7 +34,7 @@ public class CreateMemberRequest {
     private String birthday;
 
     @JsonProperty("sex")
-    private Long sex;
+    private Integer sex;
 
     @JsonProperty("board_no")
     private Long boardNo;
